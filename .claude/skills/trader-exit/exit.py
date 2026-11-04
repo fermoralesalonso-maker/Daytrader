@@ -572,7 +572,7 @@ def build_plan(a, now_utc):
                             % info["setup"])
         stop_text = "or-mid"
     stop_rule, stop_param = parse_stop(stop_text)
-    target_rule, target_param = parse_target(a.target or "2R")
+    target_rule, target_param = parse_target(a.target or cfg.get("default_target") or "2R")
     day = None
     if info["date"]:
         try:
