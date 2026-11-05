@@ -75,9 +75,29 @@ protegen. Orden fijo:
    relevante; Modelo A → seguir el stop con nuevos FVG y estructura. Cerrar
    antes de `flat_by`.
 
-Limitación actual: `/trader-exit`, `/trader-budget` y `/trader-broker` son
-solo LONG. Los SHORT de Percoco se analizan y simulan, no se ejecutan mientras
-`allow_short` sea false.
+Limitación: `/trader-exit`, `/trader-budget` y `/trader-broker` son solo
+LONG. Para LONG y SHORT existe la ejecución simulada de abajo.
+
+## Ejecución simulada automática (paper.py)
+
+Nunca envía órdenes reales. Libro en `trader/percoco_paper.json`.
+
+```bash
+python3 "${CLAUDE_SKILL_DIR}/percoco.py" SPY --write   # señal fresca
+python3 "${CLAUDE_SKILL_DIR}/paper.py" open SPY        # abre SOLO si hay setup CONFIRMADO
+python3 "${CLAUDE_SKILL_DIR}/paper.py" update          # stop, objetivo, breakeven, cierre 15:55
+python3 "${CLAUDE_SKILL_DIR}/paper.py" show
+```
+
+- Abre LONG o SHORT (SHORT requiere `"allow_short": true`).
+- Precio de llenado = precio actual ± 0.01 de deslizamiento; el riesgo se
+  recalcula desde ese precio.
+- Tamaño = pérdida máx. por operación / riesgo por acción, con tope de orden,
+  posición y efectivo. Respeta ventana de entradas, operaciones por día,
+  pérdida diaria y una sola operación por zona.
+- Objetivo 4R; stop a breakeven cuando una vela de 1m cierra más allá del
+  swing estructural; si una vela toca stop y objetivo cuenta como stop;
+  cierre obligatorio a `flat_by`.
 
 ## 1. Filtro inicial del mercado [Documentado]
 
