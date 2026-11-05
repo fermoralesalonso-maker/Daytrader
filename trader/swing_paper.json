@@ -3,9 +3,52 @@
   "opened": "2026-11-05",
   "max_sessions": 20,
   "positions": [
-    {"symbol": "WMT", "entry": 130.93, "stop": 123.73, "target": 145.31, "shares": 1, "status": "abierta"},
-    {"symbol": "NEE", "entry": 89.95,  "stop": 85.24,  "target": 99.37,  "shares": 2, "status": "abierta"},
-    {"symbol": "XYZ", "entry": 88.29,  "stop": 80.94,  "target": 102.99, "shares": 2, "status": "abierta"},
-    {"symbol": "WFC", "entry": 89.09,  "stop": 84.02,  "target": 99.23,  "shares": 2, "status": "abierta"}
-  ]
+    {
+      "symbol": "WMT",
+      "entry": 130.93,
+      "stop": 123.73,
+      "target": 145.31,
+      "shares": 1,
+      "status": "abierta",
+      "last": 127.72,
+      "pnl": -3.21,
+      "R": -0.45
+    },
+    {
+      "symbol": "NEE",
+      "entry": 89.95,
+      "stop": 85.24,
+      "target": 99.37,
+      "shares": 2,
+      "status": "abierta",
+      "last": 88.26,
+      "pnl": -3.37,
+      "R": -0.36
+    },
+    {
+      "symbol": "XYZ",
+      "entry": 88.29,
+      "stop": 80.94,
+      "target": 102.99,
+      "shares": 2,
+      "status": "abierta",
+      "last": 84.07,
+      "pnl": -8.44,
+      "R": -0.57
+    },
+    {
+      "symbol": "WFC",
+      "entry": 89.09,
+      "stop": 84.02,
+      "target": 99.23,
+      "shares": 2,
+      "status": "abierta",
+      "last": 84.78,
+      "pnl": -8.62,
+      "R": -0.85
+    }
+  ],
+  "sessions": 1,
+  "total_pnl": -23.64,
+  "updated": "2026-11-05 16:12"
 }
