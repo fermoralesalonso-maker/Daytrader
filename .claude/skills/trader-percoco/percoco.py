@@ -166,7 +166,7 @@ def breaks_and_retests(bars, piv):
                 after = bars[j + 1:]
                 rt = [x for x in after if x["l"] <= lvl * 1.0007]
                 held = all(x["c"] >= lvl for x in after)
-                out.append({"nivel": lvl, "tipo": "ruptura alcista de swing high", "ruptura": bars[j]["t"],
+                out.append({"nivel": lvl, "tipo": "ruptura alcista de swing high", "ruptura": bars[j]["t"], "_j": j,
                             "retest": "overside retest" if rt else "sin retest aún",
                             "retest_hora": rt[0]["t"] if rt else None, "sostiene": held})
                 break
@@ -174,7 +174,7 @@ def breaks_and_retests(bars, piv):
                 after = bars[j + 1:]
                 rt = [x for x in after if x["h"] >= lvl * 0.9993]
                 held = all(x["c"] <= lvl for x in after)
-                out.append({"nivel": lvl, "tipo": "ruptura bajista de swing low", "ruptura": bars[j]["t"],
+                out.append({"nivel": lvl, "tipo": "ruptura bajista de swing low", "ruptura": bars[j]["t"], "_j": j,
                             "retest": "underside retest" if rt else "sin retest aún",
                             "retest_hora": rt[0]["t"] if rt else None, "sostiene": held})
                 break
@@ -232,7 +232,10 @@ def analyze(sym, interval, k, tick):
         raise SystemExit("Muy pocas velas en %s %s" % (sym, interval))
     piv = pivots(bars, k)
     last = bars[-1]
+    off = max(0, len(bars) - 150)
     gaps = [g for g in fvgs(bars[-150:], tick) if g["estado"] != "rellenado"]
+    for g in gaps:
+        g["i"] += off
     for g in gaps:
         g["distancia_pct"] = round((last["c"] - g["ce"]) / last["c"] * 100, 2)
     gaps.sort(key=lambda g: abs(g["distancia_pct"]))
@@ -247,7 +250,8 @@ def analyze(sym, interval, k, tick):
                         "cuerpo_pct_rango": round(abs(body) / rngb * 100) if rngb else 0},
         "estructura": structure(piv),
         "swings": [{"t": p[0], "precio": p[2], "hora_et": et(bars[p[1]]["t"]).strftime("%m-%d %H:%M")} for p in piv[-6:]],
-        "rupturas": [{**x, "ruptura": et(x["ruptura"]).strftime("%m-%d %H:%M"),
+        "_breaks": breaks_and_retests(bars, piv),
+        "rupturas": [{**{kk: v for kk, v in x.items() if kk != "_j"}, "ruptura": et(x["ruptura"]).strftime("%m-%d %H:%M"),
                       "retest_hora": et(x["retest_hora"]).strftime("%m-%d %H:%M") if x["retest_hora"] else None}
                      for x in breaks_and_retests(bars, piv)],
         "fvg_abiertos_cercanos": [{**{kk: v for kk, v in g.items() if kk not in ("i", "vela_impulso")},
@@ -257,8 +261,96 @@ def analyze(sym, interval, k, tick):
         "limpieza_eficiencia_20": round(eff, 2) if eff is not None else None,
         "mecha_media_pct_20": round(wick * 100) if wick is not None else None,
         "volumen_ultima_vs_media20": round(last["v"] / (sum(vols) / len(vols)), 2) if vols else None,
-        "_meta": meta,
+        "_meta": meta, "_bars": bars, "_piv": piv, "_gaps": gaps,
     }
+
+
+def setups(sym, res, tol_pct=0.0015):
+    """Candidate trades by the rules: FVG + broken level retest + Fib/RSI confluence.
+    Entry = CE, stop = beyond the impulse candle, target = 4R (ref.) and the structural extreme."""
+    htf, mtf, ex = res
+    bias = {"alcista": 0, "bajista": 0}
+    for a in (htf, mtf):
+        if a["estructura"].startswith("alcista"): bias["alcista"] += 1
+        if a["estructura"].startswith("bajista"): bias["bajista"] += 1
+    out = []
+    for a in (mtf, ex):
+        bars, last = a["_bars"], a["_bars"][-1]
+        fibr = (a["fib"] or {}).get("retroceso") or {}
+        for g in a["_gaps"]:
+            if g.get("gap_apertura"):
+                continue
+            bull = g["tipo"] == "alcista"
+            lo, hi = g["piso"], g["techo"]
+            tol = last["c"] * tol_pct
+            conf = []
+            if et(bars[g["i"]]["t"]).date() != et(last["t"]).date():
+                continue  # this session's displacement only
+            # the FVG must come from the breakout impulse of a level that still holds
+            lvls = [b for b in a["_breaks"] if b["sostiene"] and (("alcista" in b["tipo"]) == bull)
+                    and b["_j"] - 1 <= g["i"] <= b["_j"] + 3 and lo - 3 * tol <= b["nivel"] <= hi + 3 * tol]
+            if lvls:
+                conf.append("%s %.2f" % ("overside" if bull else "underside", lvls[0]["nivel"]))
+            for k in ("0.5", "0.618"):
+                if k in fibr and lo - tol <= fibr[k] <= hi + tol and (a["fib"]["impulso"] == "alcista") == bull:
+                    conf.append("Fib %s %.2f" % (k, fibr[k]))
+            r = a["rsi14"]
+            if r is not None and ((bull and r <= 35) or (not bull and r >= 65)):
+                conf.append("RSI %.0f" % r)
+            if not lvls:
+                continue  # retest of a broken level is mandatory
+            entry = round(g["ce"], 2)
+            il, ih = g["vela_impulso_rango"]
+            stop = round(il - 0.01, 2) if bull else round(ih + 0.01, 2)
+            risk = (entry - stop) if bull else (stop - entry)
+            if risk <= 0:
+                continue
+            extreme = max(b["h"] for b in bars[g["i"]:]) if bull else min(b["l"] for b in bars[g["i"]:])
+            r4 = entry + 4 * risk if bull else entry - 4 * risk
+            # where is price now relative to the zone?
+            touched = (last["l"] <= hi and last["h"] >= lo)
+            react = touched and ((bull and last["c"] > last["o"] and last["c"] > g["ce"]) or
+                                 (not bull and last["c"] < last["o"] and last["c"] < g["ce"]))
+            status = "CONFIRMADO (vela de reacción cerrada)" if react else \
+                     "EN ZONA, esperando vela de reacción" if touched else "esperando retroceso a la zona"
+            out.append({"tf": a["tf"], "lado": "LONG" if bull else "SHORT",
+                        "modelo": ("continuación" if bias["alcista" if bull else "bajista"] >= 1 else "reversión"),
+                        "alineado_htf": bias["alcista" if bull else "bajista"] >= 1,
+                        "zona": (lo, hi), "entrada_ce": entry, "stop": stop, "riesgo_accion": round(risk, 2),
+                        "tp_4r": round(r4, 2), "tp_estructura": round(extreme, 2),
+                        "rr_estructura": round(abs(extreme - entry) / risk, 2),
+                        "confluencias": conf, "n_conf": len(conf) - 1, "estado": status,
+                        "hora_vela_et": et(ex["_bars"][-1]["t"] + {"1m": 60, "5m": 300}.get(ex["tf"], 300)).strftime("%I:%M %p").lstrip("0"),
+                        "fecha": et(last["t"]).strftime("%Y-%m-%d")})
+    out.sort(key=lambda x: (-x["n_conf"], abs(last["c"] - x["entrada_ce"])))
+    return out, bias
+
+
+def show_setups(sym, cands, bias, cfg):
+    print("\n=== SETUPS PERCOCO (sesgo 1h+15m: alcista %d / bajista %d) ===" % (bias["alcista"], bias["bajista"]))
+    if not cands:
+        print("Ninguno: ningún FVG de hoy nace de una ruptura vigente con retest posible. -> NO TRADE")
+        return
+    maxloss = cfg.get("max_loss_per_trade_usd")
+    for c in cands[:4]:
+        print("%s %s [%s, modelo %s%s] zona %.2f-%.2f | entrada CE %.2f | stop %.2f | riesgo %.2f/acc" % (
+            c["lado"], c["tf"], c["estado"], c["modelo"], "" if c["alineado_htf"] else ", CONTRA sesgo",
+            c["zona"][0], c["zona"][1], c["entrada_ce"], c["stop"], c["riesgo_accion"]))
+        print("   TP 4R %.2f | TP estructura %.2f (%.1fR) | confluencias: %s" % (
+            c["tp_4r"], c["tp_estructura"], c["rr_estructura"], ", ".join(c["confluencias"])))
+        if maxloss:
+            print("   acciones por riesgo (max %s USD): %d (trader-budget aplica además los límites de capital)" % (
+                maxloss, int(maxloss // c["riesgo_accion"])))
+        if c["lado"] == "LONG":
+            print('   -> exit.py plan --symbol %s --entry %.2f --setup level --stop price:%.2f --target 4R --time "%s" --write' % (
+                sym, c["entrada_ce"], c["stop"], c["hora_vela_et"]))
+        else:
+            print('   -> timemachine.py run --symbol %s --side sell --setup level --entry %.2f --stop %.2f --target %.2f --entry-time "%s"' % (
+                sym, c["entrada_ce"], c["stop"], c["tp_4r"], c["hora_vela_et"]))
+            if not cfg.get("allow_short"):
+                print("   (SHORT: solo análisis y simulación; tu config tiene allow_short=false)")
+        if not c["estado"].startswith("CONFIRMADO"):
+            print("   (no ejecutable aún: falta la reacción confirmada)")
 
 
 def r2(x):
@@ -307,18 +399,38 @@ def main():
     p.add_argument("--swing", type=int, default=3, help="bars each side for a swing pivot")
     p.add_argument("--tick", type=float, default=0.01, help="ignore FVGs this size or smaller")
     p.add_argument("--json", action="store_true")
+    p.add_argument("--config", default="trader/config.json")
+    p.add_argument("--write", nargs="?", const="trader/percoco.json", metavar="PATH",
+                   help="save the analysis and setups (default trader/percoco.json)")
     a = p.parse_args()
     sym = a.symbol.upper()
     res = []
     for tf in (a.htf, a.mtf, a.ex):
         res.append(analyze(sym, tf, a.swing, a.tick))
         time.sleep(0.5)
+    try:
+        cfg = json.load(open(a.config))
+    except Exception:
+        cfg = {}
+    cands, bias = setups(sym, res)
+    meta = res[0]["_meta"]
+    for r in res:
+        for k in ("_meta", "_bars", "_piv", "_gaps", "_breaks"):
+            r.pop(k, None)
+    doc = {"created_by": "trader-percoco", "symbol": sym, "price": meta.get("regularMarketPrice"),
+           "as_of_et": et(int(time.time())).strftime("%Y-%m-%d %H:%M"), "bias": bias,
+           "setups": cands, "timeframes": res,
+           "note": "Medición, no recomendación. El veredicto aplica las reglas de SKILL.md."}
+    if a.write:
+        with open(a.write, "w") as f:
+            json.dump(doc, f, indent=1, default=str)
     if a.json:
-        for r in res:
-            r.pop("_meta", None)
-        print(json.dumps({"symbol": sym, "timeframes": res}, indent=1, default=str))
+        print(json.dumps(doc, indent=1, default=str))
     else:
-        show(sym, res)
+        show(sym, [dict(r, _meta=meta) if i == 0 else r for i, r in enumerate(res)])
+        show_setups(sym, cands, bias, cfg)
+        if a.write:
+            print("\nGuardado en %s" % a.write)
 
 
 if __name__ == "__main__":

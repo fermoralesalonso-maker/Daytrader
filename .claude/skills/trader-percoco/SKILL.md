@@ -45,6 +45,40 @@ dominante, extensión de tendencia A‑B‑C, RSI(14), eficiencia de 20 velas
 Datos de Yahoo gratuitos: pueden ir con retraso. Si el usuario pega un
 gráfico, usa solo lo visible; si un precio no se ve, dilo y no lo inventes.
 
+## Flujo completo con las skills /trader
+
+Percoco decide QUÉ operar; las skills `/trader` miden, simulan, dimensionan y
+protegen. Orden fijo:
+
+1. **/trader-scanner** (y **/trader-news**): candidatos del día y noticias que
+   los mueven. Descartar los que tengan una noticia binaria pendiente.
+2. **/trader-percoco** en cada candidato:
+   `percoco.py TICKER --write` → análisis en 16 puntos y `trader/percoco.json`.
+   El script lista setups solo si un FVG de HOY nace del impulso de una
+   ruptura que sigue vigente (retest obligatorio) y suma Fib 50/61.8 y RSI
+   como confluencias. Estado: *esperando retroceso*, *en zona* o
+   *CONFIRMADO* (vela de reacción cerrada). Solo CONFIRMADO es ejecutable.
+3. **Vigilar la zona**: `/trader-alerts` en el techo/piso del FVG, o un
+   `/loop 5m` que repita `percoco.py TICKER` hasta CONFIRMADO o invalidación.
+4. **/trader-exit** (LONG): el script imprime el comando exacto
+   (`exit.py plan --setup level --stop price:STOP --target 4R --time ... --write`).
+   Stop = más allá de la vela de impulso del FVG; objetivo inicial 4R
+   (referencia del Modelo B; en Modelo A usar 4R o la estructura).
+5. **/trader-timemachine**: 10,000 simulaciones del resto de la sesión. Si el
+   objetivo casi nunca llega antes del cierre, decirlo y proponer el objetivo
+   estructural o el 2R (nunca acercar el stop para "mejorar" números).
+   Los SHORT también se simulan (`--side sell`, comando impreso por el script).
+6. **/trader-budget** → **/trader-risk** → **/trader-broker**: tamaño por R,
+   límites diarios, y orden solo con el sí explícito del usuario. Paper por
+   defecto.
+7. **Gestión**: Modelo B → stop a breakeven al cerrar bajo/sobre el swing
+   relevante; Modelo A → seguir el stop con nuevos FVG y estructura. Cerrar
+   antes de `flat_by`.
+
+Limitación actual: `/trader-exit`, `/trader-budget` y `/trader-broker` son
+solo LONG. Los SHORT de Percoco se analizan y simulan, no se ejecutan mientras
+`allow_short` sea false.
+
 ## 1. Filtro inicial del mercado [Documentado]
 
 - Dirección general identificable, liquidez y volumen suficientes.

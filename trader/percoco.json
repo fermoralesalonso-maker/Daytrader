@@ -1,0 +1,606 @@
+{
+ "created_by": "trader-percoco",
+ "symbol": "SPY",
+ "price": 743.81,
+ "as_of_et": "2026-11-05 11:34",
+ "bias": {
+  "alcista": 0,
+  "bajista": 1
+ },
+ "setups": [
+  {
+   "tf": "15m",
+   "lado": "SHORT",
+   "modelo": "continuaci\u00f3n",
+   "alineado_htf": true,
+   "zona": [
+    751.6699829101562,
+    752.8300170898438
+   ],
+   "entrada_ce": 752.25,
+   "stop": 755.03,
+   "riesgo_accion": 2.78,
+   "tp_4r": 741.13,
+   "tp_estructura": 737.11,
+   "rr_estructura": 5.45,
+   "confluencias": [
+    "underside 753.51",
+    "Fib 0.5 752.90"
+   ],
+   "n_conf": 1,
+   "estado": "esperando retroceso a la zona",
+   "hora_vela_et": "11:35 AM",
+   "fecha": "2026-11-05"
+  },
+  {
+   "tf": "15m",
+   "lado": "SHORT",
+   "modelo": "continuaci\u00f3n",
+   "alineado_htf": true,
+   "zona": [
+    755.02001953125,
+    756.9000854492188
+   ],
+   "entrada_ce": 755.96,
+   "stop": 757.35,
+   "riesgo_accion": 1.39,
+   "tp_4r": 750.4,
+   "tp_estructura": 737.11,
+   "rr_estructura": 13.56,
+   "confluencias": [
+    "underside 753.51",
+    "Fib 0.618 756.62"
+   ],
+   "n_conf": 1,
+   "estado": "esperando retroceso a la zona",
+   "hora_vela_et": "11:35 AM",
+   "fecha": "2026-11-05"
+  }
+ ],
+ "timeframes": [
+  {
+   "tf": "1h",
+   "velas": 456,
+   "vela_en_formacion_excluida": true,
+   "ultima_vela": {
+    "hora_et": "11-05 11:30",
+    "o": 745.239990234375,
+    "h": 745.9404907226562,
+    "l": 743.0700073242188,
+    "c": 744.239990234375,
+    "tipo": "bajista",
+    "cuerpo_pct_rango": 35
+   },
+   "estructura": "lateral / mixta (HH + LL)",
+   "swings": [
+    {
+     "t": "H",
+     "precio": 773.3599853515625,
+     "hora_et": "10-28 14:30"
+    },
+    {
+     "t": "L",
+     "precio": 750.3599853515625,
+     "hora_et": "10-30 14:30"
+    },
+    {
+     "t": "H",
+     "precio": 763.8599853515625,
+     "hora_et": "11-02 09:30"
+    },
+    {
+     "t": "L",
+     "precio": 751.5999755859375,
+     "hora_et": "11-02 15:30"
+    },
+    {
+     "t": "H",
+     "precio": 775.6400146484375,
+     "hora_et": "11-04 09:30"
+    },
+    {
+     "t": "L*",
+     "precio": 737.1099853515625,
+     "hora_et": "11-05 10:30"
+    }
+   ],
+   "rupturas": [
+    {
+     "nivel": 758.6799926757812,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "10-30 09:30",
+     "retest": "underside retest",
+     "retest_hora": "10-30 10:30",
+     "sostiene": false
+    },
+    {
+     "nivel": 750.3599853515625,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-05 09:30",
+     "retest": "sin retest a\u00fan",
+     "retest_hora": null,
+     "sostiene": true
+    },
+    {
+     "nivel": 763.8599853515625,
+     "tipo": "ruptura alcista de swing high",
+     "ruptura": "11-04 09:30",
+     "retest": "overside retest",
+     "retest_hora": "11-04 10:30",
+     "sostiene": false
+    },
+    {
+     "nivel": 751.5999755859375,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-05 09:30",
+     "retest": "sin retest a\u00fan",
+     "retest_hora": null,
+     "sostiene": true
+    }
+   ],
+   "fvg_abiertos_cercanos": [
+    {
+     "tipo": "bajista",
+     "techo": 765.9000244140625,
+     "piso": 748.760009765625,
+     "ce": 757.3300170898438,
+     "vela_impulso_rango": [
+      744.72998046875,
+      765.969970703125
+     ],
+     "estado": "abierto",
+     "gap_apertura": true,
+     "distancia_pct": -1.76,
+     "vela_impulso_et": "11-05 09:30"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 767.135009765625,
+     "piso": 765.969970703125,
+     "ce": 766.552490234375,
+     "vela_impulso_rango": [
+      765.9000244140625,
+      768.6849975585938
+     ],
+     "estado": "abierto",
+     "gap_apertura": true,
+     "distancia_pct": -3.0,
+     "vela_impulso_et": "11-04 15:30"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 777.72998046875,
+     "piso": 773.4600219726562,
+     "ce": 775.5950012207031,
+     "vela_impulso_rango": [
+      772.5800170898438,
+      776.3499755859375
+     ],
+     "estado": "mitigado al CE",
+     "gap_apertura": true,
+     "distancia_pct": -4.21,
+     "vela_impulso_et": "10-14 09:30"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 777.280029296875,
+     "piso": 776.3499755859375,
+     "ce": 776.8150024414062,
+     "vela_impulso_rango": [
+      777.72998046875,
+      778.5999755859375
+     ],
+     "estado": "abierto",
+     "gap_apertura": true,
+     "distancia_pct": -4.38,
+     "vela_impulso_et": "10-13 15:30"
+    }
+   ],
+   "fib": {
+    "impulso": "bajista",
+    "desde": 775.6400146484375,
+    "hasta": 737.1099853515625,
+    "desde_et": "11-04 09:30",
+    "hasta_et": "11-05 10:30",
+    "retroceso": {
+     "0.236": 746.203072265625,
+     "0.382": 751.8284565429688,
+     "0.5": 756.375,
+     "0.618": 760.9215434570312,
+     "0.786": 767.3945883789063
+    },
+    "retroceso_actual_max": 0.229,
+    "extension_tendencia": {
+     "A": 775.6400146484375,
+     "B": 737.1099853515625,
+     "C": 745.9404907226562,
+     "1.0": 707.4104614257812,
+     "1.618": 683.5989033203125,
+     "2.618": 645.0688740234375,
+     "3.618": 606.5388447265625
+    }
+   },
+   "rsi14": 31.3,
+   "limpieza_eficiencia_20": 0.21,
+   "mecha_media_pct_20": 59,
+   "volumen_ultima_vs_media20": 0.07
+  },
+  {
+   "tf": "15m",
+   "velas": 599,
+   "vela_en_formacion_excluida": true,
+   "ultima_vela": {
+    "hora_et": "11-05 11:30",
+    "o": 745.239990234375,
+    "h": 745.9404907226562,
+    "l": 743.0700073242188,
+    "c": 744.239990234375,
+    "tipo": "bajista",
+    "cuerpo_pct_rango": 35
+   },
+   "estructura": "bajista (LH + LL)",
+   "swings": [
+    {
+     "t": "L",
+     "precio": 763.4099731445312,
+     "hora_et": "11-04 11:15"
+    },
+    {
+     "t": "H",
+     "precio": 769.22998046875,
+     "hora_et": "11-04 13:00"
+    },
+    {
+     "t": "L",
+     "precio": 767.0700073242188,
+     "hora_et": "11-04 13:45"
+    },
+    {
+     "t": "H",
+     "precio": 768.6849975585938,
+     "hora_et": "11-04 15:30"
+    },
+    {
+     "t": "L",
+     "precio": 737.1099853515625,
+     "hora_et": "11-05 10:45"
+    },
+    {
+     "t": "H*",
+     "precio": 746.0,
+     "hora_et": "11-05 11:15"
+    }
+   ],
+   "rupturas": [
+    {
+     "nivel": 757.0700073242188,
+     "tipo": "ruptura alcista de swing high",
+     "ruptura": "11-04 09:30",
+     "retest": "overside retest",
+     "retest_hora": "11-05 09:30",
+     "sostiene": false
+    },
+    {
+     "nivel": 753.510009765625,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-05 10:00",
+     "retest": "sin retest a\u00fan",
+     "retest_hora": null,
+     "sostiene": true
+    },
+    {
+     "nivel": 763.4099731445312,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-05 09:30",
+     "retest": "sin retest a\u00fan",
+     "retest_hora": null,
+     "sostiene": true
+    },
+    {
+     "nivel": 767.0700073242188,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-04 15:45",
+     "retest": "sin retest a\u00fan",
+     "retest_hora": null,
+     "sostiene": true
+    }
+   ],
+   "fvg_abiertos_cercanos": [
+    {
+     "tipo": "bajista",
+     "techo": 749.6199951171875,
+     "piso": 748.760009765625,
+     "ce": 749.1900024414062,
+     "vela_impulso_rango": [
+      744.72998046875,
+      751.6699829101562
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -0.67,
+     "vela_impulso_et": "11-05 10:15"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 752.8300170898438,
+     "piso": 751.6699829101562,
+     "ce": 752.25,
+     "vela_impulso_rango": [
+      749.6199951171875,
+      755.02001953125
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -1.08,
+     "vela_impulso_et": "11-05 10:00"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 756.9000854492188,
+     "piso": 755.02001953125,
+     "ce": 755.9600524902344,
+     "vela_impulso_rango": [
+      752.8300170898438,
+      757.3400268554688
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -1.57,
+     "vela_impulso_et": "11-05 09:45"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 765.9000244140625,
+     "piso": 757.3400268554688,
+     "ce": 761.6200256347656,
+     "vela_impulso_rango": [
+      756.9000854492188,
+      765.969970703125
+     ],
+     "estado": "abierto",
+     "gap_apertura": true,
+     "distancia_pct": -2.34,
+     "vela_impulso_et": "11-05 09:30"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 767.1699829101562,
+     "piso": 765.969970703125,
+     "ce": 766.5699768066406,
+     "vela_impulso_rango": [
+      765.9000244140625,
+      767.530029296875
+     ],
+     "estado": "abierto",
+     "gap_apertura": true,
+     "distancia_pct": -3.0,
+     "vela_impulso_et": "11-04 15:45"
+    }
+   ],
+   "fib": {
+    "impulso": "bajista",
+    "desde": 768.6849975585938,
+    "hasta": 737.1099853515625,
+    "desde_et": "11-04 15:30",
+    "hasta_et": "11-05 10:45",
+    "retroceso": {
+     "0.236": 744.5616882324218,
+     "0.382": 749.1716400146485,
+     "0.5": 752.8974914550781,
+     "0.618": 756.6233428955078,
+     "0.786": 761.927944946289
+    },
+    "retroceso_actual_max": 0.282,
+    "extension_tendencia": {
+     "A": 768.6849975585938,
+     "B": 737.1099853515625,
+     "C": 746.0,
+     "1.0": 714.4249877929688,
+     "1.618": 694.9116302490235,
+     "2.618": 663.3366180419922,
+     "3.618": 631.761605834961
+    }
+   },
+   "rsi14": 24.4,
+   "limpieza_eficiencia_20": 0.69,
+   "mecha_media_pct_20": 48,
+   "volumen_ultima_vs_media20": 0.1
+  },
+  {
+   "tf": "5m",
+   "velas": 337,
+   "vela_en_formacion_excluida": true,
+   "ultima_vela": {
+    "hora_et": "11-05 11:30",
+    "o": 745.239990234375,
+    "h": 745.9404907226562,
+    "l": 743.0700073242188,
+    "c": 744.239990234375,
+    "tipo": "bajista",
+    "cuerpo_pct_rango": 35
+   },
+   "estructura": "bajista (LH + LL)",
+   "swings": [
+    {
+     "t": "L",
+     "precio": 767.0700073242188,
+     "hora_et": "11-04 13:55"
+    },
+    {
+     "t": "H",
+     "precio": 768.8200073242188,
+     "hora_et": "11-04 14:10"
+    },
+    {
+     "t": "L",
+     "precio": 767.135009765625,
+     "hora_et": "11-04 15:05"
+    },
+    {
+     "t": "H",
+     "precio": 768.6849975585938,
+     "hora_et": "11-04 15:35"
+    },
+    {
+     "t": "L",
+     "precio": 737.1099853515625,
+     "hora_et": "11-05 10:50"
+    },
+    {
+     "t": "H*",
+     "precio": 746.0,
+     "hora_et": "11-05 11:25"
+    }
+   ],
+   "rupturas": [
+    {
+     "nivel": 768.6199951171875,
+     "tipo": "ruptura alcista de swing high",
+     "ruptura": "11-04 12:45",
+     "retest": "overside retest",
+     "retest_hora": "11-04 12:50",
+     "sostiene": false
+    },
+    {
+     "nivel": 767.9099731445312,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-04 13:35",
+     "retest": "underside retest",
+     "retest_hora": "11-04 13:40",
+     "sostiene": false
+    },
+    {
+     "nivel": 767.0700073242188,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-04 15:50",
+     "retest": "underside retest",
+     "retest_hora": "11-04 15:55",
+     "sostiene": true
+    },
+    {
+     "nivel": 767.135009765625,
+     "tipo": "ruptura bajista de swing low",
+     "ruptura": "11-04 15:50",
+     "retest": "underside retest",
+     "retest_hora": "11-04 15:55",
+     "sostiene": true
+    }
+   ],
+   "fvg_abiertos_cercanos": [
+    {
+     "tipo": "alcista",
+     "techo": 742.4500122070312,
+     "piso": 742.0850219726562,
+     "ce": 742.2675170898438,
+     "vela_impulso_rango": [
+      741.6699829101562,
+      744.75
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": 0.27,
+     "vela_impulso_et": "11-05 11:10"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 748.7999877929688,
+     "piso": 747.6799926757812,
+     "ce": 748.239990234375,
+     "vela_impulso_rango": [
+      747.4749755859375,
+      749.510009765625
+     ],
+     "estado": "mitigado al CE",
+     "gap_apertura": false,
+     "distancia_pct": -0.54,
+     "vela_impulso_et": "11-05 10:20"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 749.6199951171875,
+     "piso": 749.510009765625,
+     "ce": 749.5650024414062,
+     "vela_impulso_rango": [
+      748.7999877929688,
+      751.6699829101562
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -0.72,
+     "vela_impulso_et": "11-05 10:15"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 752.1799926757812,
+     "piso": 752.0900268554688,
+     "ce": 752.135009765625,
+     "vela_impulso_rango": [
+      751.1900024414062,
+      753.0
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -1.06,
+     "vela_impulso_et": "11-05 10:05"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 755.3599853515625,
+     "piso": 754.6199951171875,
+     "ce": 754.989990234375,
+     "vela_impulso_rango": [
+      754.5599975585938,
+      757.1300048828125
+     ],
+     "estado": "mitigado al CE",
+     "gap_apertura": false,
+     "distancia_pct": -1.44,
+     "vela_impulso_et": "11-05 09:50"
+    },
+    {
+     "tipo": "bajista",
+     "techo": 760.3900146484375,
+     "piso": 757.3400268554688,
+     "ce": 758.8650207519531,
+     "vela_impulso_rango": [
+      756.9000854492188,
+      760.7000122070312
+     ],
+     "estado": "abierto",
+     "gap_apertura": false,
+     "distancia_pct": -1.97,
+     "vela_impulso_et": "11-05 09:40"
+    }
+   ],
+   "fib": {
+    "impulso": "bajista",
+    "desde": 768.6849975585938,
+    "hasta": 737.1099853515625,
+    "desde_et": "11-04 15:35",
+    "hasta_et": "11-05 10:50",
+    "retroceso": {
+     "0.236": 744.5616882324218,
+     "0.382": 749.1716400146485,
+     "0.5": 752.8974914550781,
+     "0.618": 756.6233428955078,
+     "0.786": 761.927944946289
+    },
+    "retroceso_actual_max": 0.282,
+    "extension_tendencia": {
+     "A": 768.6849975585938,
+     "B": 737.1099853515625,
+     "C": 746.0,
+     "1.0": 714.4249877929688,
+     "1.618": 694.9116302490235,
+     "2.618": 663.3366180419922,
+     "3.618": 631.761605834961
+    }
+   },
+   "rsi14": 35.7,
+   "limpieza_eficiencia_20": 0.35,
+   "mecha_media_pct_20": 47,
+   "volumen_ultima_vs_media20": 0.12
+  }
+ ],
+ "note": "Medici\u00f3n, no recomendaci\u00f3n. El veredicto aplica las reglas de SKILL.md."
+}
