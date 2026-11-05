@@ -1,0 +1,11 @@
+{
+  "note": "Simulación en papel, sin órdenes. Regla: cierre > máximo de 20 días y > promedio 50 días; entrada a la apertura; stop 3 ATR(14), objetivo 6 ATR, máximo 20 sesiones. Elegidas por más negociadas.",
+  "opened": "2026-11-05",
+  "max_sessions": 20,
+  "positions": [
+    {"symbol": "WMT", "entry": 130.93, "stop": 123.73, "target": 145.31, "shares": 1, "status": "abierta"},
+    {"symbol": "NEE", "entry": 89.95,  "stop": 85.24,  "target": 99.37,  "shares": 2, "status": "abierta"},
+    {"symbol": "XYZ", "entry": 88.29,  "stop": 80.94,  "target": 102.99, "shares": 2, "status": "abierta"},
+    {"symbol": "WFC", "entry": 89.09,  "stop": 84.02,  "target": 99.23,  "shares": 2, "status": "abierta"}
+  ]
+}
