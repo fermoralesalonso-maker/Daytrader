@@ -90,6 +90,19 @@ python3 "${CLAUDE_SKILL_DIR}/paper.py" show
 python3 "${CLAUDE_SKILL_DIR}/paper.py" cycle SPY ED AWK SO  # todo junto para una lista; imprime solo cambios
 ```
 
+Antes de abrir, `paper.py` pasa SIEMPRE por las skills /trader (cualquier
+fallo = no se abre, y se avisa una sola vez):
+1. **/trader-news**: bloquea con un 8-K importante, un halt, o un titular
+   fuerte (resultados, fusión, legal, regulatorio, riesgo) mientras la acción
+   hace un movimiento inusual. A los ETF de índice no los bloquean titulares
+   de otras empresas.
+2. **/trader-timemachine** al primer objetivo (2R): el objetivo debe llegar
+   primero en al menos 1/3 de las simulaciones decididas y el R medio debe ser
+   positivo.
+3. **LONG**: /trader-exit → /trader-budget → /trader-risk sobre archivos
+   aparte (`trader/state/percoco_*.json`); debe salir PASS. SHORT: límites de
+   la config aplicados por paper.py (trader-risk solo revisa compras).
+
 `cycle` gestiona lo abierto, analiza cada activo, abre en papel lo
 CONFIRMADO y avisa solo de cambios: un setup entra EN ZONA o se confirma,
 se abre o cierra una operación, un stop pasa a breakeven, o un setup

@@ -91,6 +91,83 @@ def today_trades(book, day):
     return [t for t in book["trades"] if t["date"] == day]
 
 
+SKILLS = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+NEWS_BLOCK = {"earnings", "deal", "risk", "halt", "regulatory", "legal"}
+INDEX_ETFS = {"SPY", "VOO", "IVV", "QQQ", "IWM", "DIA", "SMH", "SOXX", "XLF", "XLE", "XLK", "XLV", "XLI", "XLU",
+              "XLP", "XLY", "XLB", "XLRE", "XLC", "TLT", "GLD"}
+
+
+def _run(args, timeout=240):
+    import subprocess
+    r = subprocess.run([sys.executable] + args, capture_output=True, text=True, cwd=ROOT, timeout=timeout)
+    return r.returncode, r.stdout, r.stderr
+
+
+def gate_news(sym):
+    """/trader-news: block on a fresh (24h) earnings, deal, legal, halt, regulatory or risk item, or an important 8-K."""
+    try:
+        code, out, err = _run([os.path.join(SKILLS, "trader-news/news.py"), "--tickers", sym, "--hours", "24",
+                               "--all", "--dry-run", "--json"], 120)
+        d = json.loads(out)
+    except Exception as e:
+        return False, "noticias no disponibles (%s): por prudencia no se abre" % str(e)[:60]
+    moving = any(m.get("ticker") == sym and m.get("moving") for m in d.get("moves", []))
+    mine = [it for it in d.get("items", []) if sym in (it.get("touches") or [it.get("ticker")])]
+    # Block: an important 8-K, a halt, or a strong headline while the stock is making an unusual move.
+    bad = [it for it in mine if (it.get("kind") == "filing" and it.get("important"))
+           or "halt" in (it.get("tags") or [])
+           or (moving and sym not in INDEX_ETFS and NEWS_BLOCK & set(it.get("tags") or []))]
+    if bad:
+        it = bad[0]
+        return False, "noticia fuerte [%s]: %s" % (",".join(it.get("tags") or [it.get("kind")]), it.get("title", "")[:90])
+    return True, "sin noticias fuertes en 24h (%d titulares revisados)" % len(d.get("items", []))
+
+
+def gate_timemachine(sym, side, entry, stop, tp1, when_et):
+    """/trader-timemachine at the 2R first target: target-first must beat 1/3 of decided replays (2R break-even)."""
+    mc, last_err = None, ""
+    n = et_now()
+    base = n.replace(minute=n.minute - n.minute % 5, second=0, microsecond=0)
+    for back in (0, 5, 10, 15):  # the last completed 5-minute bar Yahoo already has
+        t = (base - datetime.timedelta(minutes=back)).strftime("%I:%M %p").lstrip("0")
+        code, out, err = _run([os.path.join(SKILLS, "trader-timemachine/timemachine.py"), "run", "--symbol", sym,
+                               "--side", "buy" if side == "LONG" else "sell", "--setup", "level", "--entry", "%.2f" % entry,
+                               "--stop", "%.2f" % stop, "--target", "%.2f" % tp1, "--entry-time", t, "--json"])
+        try:
+            mc = json.loads(out)["mc"]
+            break
+        except Exception:
+            last_err = (err or out).strip()[-100:]
+    if mc is None:
+        return False, "simulación no disponible (%s): por prudencia no se abre" % last_err, None
+    pt, ps = mc["p_target"], mc["p_stop"]
+    share = pt / (pt + ps) if pt + ps else 0
+    info = {"p_target_2R": pt, "p_stop": ps, "p_neither": mc["p_neither"], "avg_R": mc["avg_R"], "target_first_share": round(share, 3)}
+    ok = share >= 1 / 3.0 and mc["avg_R"] > 0
+    return ok, "2R primero %.0f%% vs stop %.0f%% (necesita >=33%% de los decididos, tiene %.0f%%; R medio %+.2f)" % (
+        pt * 100, ps * 100, share * 100, mc["avg_R"]), info
+
+
+def gate_risk_long(sym, entry, stop, tp1):
+    """/trader-exit -> /trader-budget -> /trader-risk for a LONG, on side files (never trader/plan.json)."""
+    st = os.path.join(ROOT, "trader/state")
+    os.makedirs(st, exist_ok=True)
+    plan, orders = os.path.join(st, "percoco_plan.json"), os.path.join(st, "percoco_orders.json")
+    code, out, err = _run([os.path.join(SKILLS, "trader-exit/exit.py"), "plan", "--symbol", sym, "--entry", "%.2f" % entry,
+                           "--setup", "level", "--stop", "price:%.2f" % stop, "--target", "price:%.2f" % tp1, "--write", plan])
+    if code:
+        return False, "trader-exit rechazó: %s" % (err or out).strip().splitlines()[-1][:100]
+    code, out, err = _run([os.path.join(SKILLS, "trader-budget/size.py"), "--plan", plan, "--write", orders])
+    if code:
+        return False, "trader-budget rechazó: %s" % (err or out).strip().splitlines()[-1][:100]
+    code, out, err = _run([os.path.join(SKILLS, "trader-risk/check.py"), "--orders", orders, "--no-write", "--json"])
+    txt = out or err
+    if code or "BLOCK" in txt:
+        line = [l for l in txt.splitlines() if "BLOCK" in l or "reason" in l]
+        return False, "trader-risk BLOQUEA: %s" % (line[0].strip()[:120] if line else txt.strip()[-120:])
+    return True, "trader-exit, trader-budget y trader-risk: PASS"
+
+
 def cmd_open(sym, sig=None):
     cfg = load(CFG, {})
     sig = sig or load(SIG, None)
@@ -144,14 +221,30 @@ def cmd_open(sym, sig=None):
     swing_r = (s["tp_estructura"] - fill) * sgn / risk
     final_r = swing_r if 2 < swing_r <= 4 else 4
     target = round(fill + sgn * final_r * risk, 2)
+    # Pre-trade checks with the /trader skills. Any failure = no trade.
+    gates = {}
+    ok, why = gate_news(sym); gates["news"] = why
+    if not ok:
+        return print("BLOQUEADO por /trader-news: %s" % why)
+    ok, why, mc = gate_timemachine(sym, side, fill, stop, tp1, now.strftime("%I:%M %p").lstrip("0"))
+    gates["timemachine"] = why
+    if not ok:
+        return print("BLOQUEADO por /trader-timemachine: %s" % why)
+    if long_:
+        ok, why = gate_risk_long(sym, fill, stop, tp1); gates["risk"] = why
+        if not ok:
+            return print("BLOQUEADO por %s" % why)
+    else:
+        gates["risk"] = "SHORT: límites de config aplicados aquí (trader-risk solo revisa compras)"
     t = {"key": key, "date": day, "symbol": sym, "side": side, "model": s["modelo"], "tf": s["tf"],
          "opened_et": now.strftime("%H:%M"), "opened_ts": int(time.time()), "entry": fill, "ideal_ce": s["entrada_ce"],
          "stop": stop, "stop_initial": stop, "tp1": tp1, "tp1_done": False, "partial_shares": 0, "partial_price": None,
          "target": target, "target_r": round(final_r, 2), "swing": s["tp_estructura"], "breakeven": False,
-         "shares": shares, "size_limit": limit, "risk_usd": round(shares * risk, 2), "confluences": s["confluencias"],
+         "shares": shares, "size_limit": limit, "checks": gates, "timemachine": mc, "risk_usd": round(shares * risk, 2), "confluences": s["confluencias"],
          "status": "abierta"}
     book["trades"].append(t)
     save(book)
+    print("Revisiones: noticias OK (%s) | simulación OK (%s) | riesgo: %s" % (gates["news"], gates["timemachine"], gates["risk"]))
     print("SIMULADA ABIERTA: %s %s %g acc a %.2f (CE ideal %.2f) | stop %.2f | TP1 2R %.2f | objetivo final %.2f (%.1fR) | riesgo %.2f USD | límite de tamaño: %s" % (
         side, sym, shares, fill, s["entrada_ce"], stop, tp1, target, final_r, t["risk_usd"], limit))
 
@@ -278,7 +371,12 @@ def cmd_cycle(symbols):
             with contextlib.redirect_stdout(buf):
                 cmd_open(sym, doc)
             msg = buf.getvalue().strip()
-            if msg and not msg.startswith("Ya se operó esta zona"):
+            blocked = watch.setdefault("blocked", {})
+            if msg.startswith("BLOQUEADO"):
+                if blocked.get(sym) != msg.split(":")[0]:
+                    events.append("%s: %s" % (sym, msg))
+                blocked[sym] = msg.split(":")[0]
+            elif msg and not msg.startswith("Ya se operó esta zona"):
                 events.append(msg)
         time.sleep(0.5)
     watch["last"] = seen
