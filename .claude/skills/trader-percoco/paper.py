@@ -127,12 +127,14 @@ def cmd_open(sym, sig=None):
     maxloss = cfg.get("max_loss_per_trade_usd", 10)
     budget = cfg.get("budget", 1000)
     cash = budget * (1 - cfg.get("cash_buffer_pct", 10) / 100.0) - sum(t["shares"] * t["entry"] for t in tt if t["status"] == "abierta")
-    caps = {"riesgo": math.floor(maxloss / risk), "orden_max": math.floor(cfg.get("max_order_usd", 750) / fill),
-            "posicion_max": math.floor(budget * cfg.get("max_position_pct", 75) / 100.0 / fill), "efectivo": math.floor(cash / fill)}
+    frac = bool(cfg.get("fractional"))
+    q = (lambda x: math.floor(x * 1000) / 1000.0) if frac else math.floor
+    caps = {"riesgo": q(maxloss / risk), "orden_max": q(cfg.get("max_order_usd", 750) / fill),
+            "posicion_max": q(budget * cfg.get("max_position_pct", 75) / 100.0 / fill), "efectivo": q(max(cash, 0) / fill)}
     shares = min(caps.values())
     limit = min(caps, key=caps.get)
-    if shares < 1:
-        return print("BLOQUEADO: 1 acción a %.2f no cabe (límite: %s)." % (fill, limit))
+    if shares * fill < cfg.get("min_order_usd", 5) or shares <= 0:
+        return print("BLOQUEADO: no cabe una posición mínima a %.2f (límite: %s)." % (fill, limit))
     realized = sum(t.get("pnl_usd", 0) for t in tt if t["status"] == "cerrada")
     open_risk = sum(t["risk_usd"] for t in tt if t["status"] == "abierta")
     if -realized + open_risk + shares * risk > cfg.get("max_daily_loss_usd", 30):
@@ -150,7 +152,7 @@ def cmd_open(sym, sig=None):
          "status": "abierta"}
     book["trades"].append(t)
     save(book)
-    print("SIMULADA ABIERTA: %s %s %d acc a %.2f (CE ideal %.2f) | stop %.2f | TP1 2R %.2f | objetivo final %.2f (%.1fR) | riesgo %.2f USD | límite de tamaño: %s" % (
+    print("SIMULADA ABIERTA: %s %s %g acc a %.2f (CE ideal %.2f) | stop %.2f | TP1 2R %.2f | objetivo final %.2f (%.1fR) | riesgo %.2f USD | límite de tamaño: %s" % (
         side, sym, shares, fill, s["entrada_ce"], stop, tp1, target, final_r, t["risk_usd"], limit))
 
 
@@ -158,14 +160,14 @@ def close(t, price, why, when):
     long_ = t["side"] == "LONG"
     sgn = 1 if long_ else -1
     exitp = round(price - SLIP if long_ else price + SLIP, 2)
-    rest = t["shares"] - t.get("partial_shares", 0)
+    rest = round(t["shares"] - t.get("partial_shares", 0), 3)
     pnl = (exitp - t["entry"]) * rest * sgn
     if t.get("partial_shares"):
         pnl += (t["partial_price"] - t["entry"]) * t["partial_shares"] * sgn
     r1 = abs(t["entry"] - t["stop_initial"])
     t.update({"status": "cerrada", "exit": exitp, "exit_why": why, "closed_et": when,
               "pnl_usd": round(pnl, 2), "r_multiple": round(pnl / (r1 * t["shares"]), 2) if r1 else None})
-    return "SIMULADA CERRADA: %s %s %s acc a %.2f (%s) -> %+.2f USD (%+.2fR)" % (
+    return "SIMULADA CERRADA: %s %s %g acc a %.2f (%s) -> %+.2f USD (%+.2fR)" % (
         t["side"], t["symbol"], rest, exitp, why, t["pnl_usd"], t["r_multiple"] or 0)
 
 
@@ -176,14 +178,15 @@ def take_tp1(t, when):
     sgn = 1 if long_ else -1
     r1 = abs(t["entry"] - t["stop_initial"])
     t["tp1_done"] = True
-    if t["shares"] >= 2:
-        t["partial_shares"] = t["shares"] // 2
+    half = (math.floor(t["shares"] * 500) / 1000.0) if t["shares"] != int(t["shares"]) else t["shares"] // 2
+    if half > 0:
+        t["partial_shares"] = half
         t["partial_price"] = round(t["tp1"] - SLIP * sgn, 2)
         t["stop"], t["breakeven"] = t["entry"], True
-        return "SIMULADA: %s %s TP1 2R: cerradas %d acc a %.2f; stop del resto a breakeven %.2f" % (
+        return "SIMULADA: %s %s TP1 2R: cerradas %g acc a %.2f; stop del resto a breakeven %.2f" % (
             t["side"], t["symbol"], t["partial_shares"], t["partial_price"], t["entry"])
     t["stop"], t["breakeven"] = round(t["entry"] + sgn * r1, 2), True
-    return "SIMULADA: %s %s llegó a 2R (%.2f): 1 sola acción, stop sube a +1R %.2f y sigue hacia %.2f" % (
+    return "SIMULADA: %s %s llegó a 2R (%.2f): no se puede dividir, stop sube a +1R %.2f y sigue hacia %.2f" % (
         t["side"], t["symbol"], t["tp1"], t["stop"], t["target"])
 
 
@@ -227,7 +230,7 @@ def cmd_show():
     tot = 0.0
     for t in book["trades"]:
         tot += t.get("pnl_usd", 0)
-        print("%s %s %s %s %d acc entrada %.2f stop %.2f obj %.2f | %s%s" % (
+        print("%s %s %s %s %g acc entrada %.2f stop %.2f obj %.2f | %s%s" % (
             t["date"], t["opened_et"], t["side"], t["symbol"], t["shares"], t["entry"], t["stop"], t["target"], t["status"],
             (" %s %+.2f USD (%+.2fR)" % (t["exit_why"], t["pnl_usd"], t["r_multiple"] or 0)) if t["status"] == "cerrada" else ""))
     print("Resultado realizado: %+.2f USD" % tot)
