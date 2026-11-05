@@ -1,8 +1,8 @@
 {
  "symbols": {
   "SPY": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 736.19,
+   "as_of_et": "2026-11-05 14:38",
+   "price": 736.64,
    "setups": [
     {
      "tf": "15m",
@@ -25,7 +25,7 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -35,7 +35,7 @@
      "alineado_htf": true,
      "zona": [
       755.02001953125,
-      756.9000854492188
+      756.9000244140625
      ],
      "entrada_ce": 755.96,
      "stop": 757.35,
@@ -49,14 +49,14 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "ED": {
-   "as_of_et": "2026-11-05 14:32",
-   "price": 120.505,
+   "as_of_et": "2026-11-05 14:37",
+   "price": 120.583,
    "setups": [
     {
      "tf": "5m",
@@ -79,114 +79,20 @@
       "Fib 0.618 120.79"
      ],
      "n_conf": 2,
-     "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
-     "fecha": "2026-11-05"
-    },
-    {
-     "tf": "5m",
-     "lado": "SHORT",
-     "modelo": "continuaci\u00f3n",
-     "alineado_htf": true,
-     "zona": [
-      120.87999725341797,
-      121.4000015258789
-     ],
-     "entrada_ce": 121.14,
-     "stop": 121.45,
-     "riesgo_accion": 0.31,
-     "tp_4r": 119.9,
-     "tp_estructura": 120.15,
-     "rr_estructura": 3.19,
-     "confluencias": [
-      "underside 121.76",
-      "Fib 0.618 120.79"
-     ],
-     "n_conf": 1,
-     "estado": "ENTRADA PASADA (+1.8R): no perseguir",
-     "hora_vela_et": "2:35 PM",
-     "fecha": "2026-11-05"
-    },
-    {
-     "tf": "5m",
-     "lado": "SHORT",
-     "modelo": "continuaci\u00f3n",
-     "alineado_htf": true,
-     "zona": [
-      121.44000244140625,
-      121.9749984741211
-     ],
-     "entrada_ce": 121.71,
-     "stop": 122.09,
-     "riesgo_accion": 0.38,
-     "tp_4r": 120.19,
-     "tp_estructura": 120.15,
-     "rr_estructura": 4.11,
-     "confluencias": [
-      "underside 121.76"
-     ],
-     "n_conf": 0,
-     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
-     "fecha": "2026-11-05"
-    },
-    {
-     "tf": "5m",
-     "lado": "SHORT",
-     "modelo": "continuaci\u00f3n",
-     "alineado_htf": true,
-     "zona": [
-      122.08000183105469,
-      122.37999725341797
-     ],
-     "entrada_ce": 122.23,
-     "stop": 122.44,
-     "riesgo_accion": 0.21,
-     "tp_4r": 121.39,
-     "tp_estructura": 120.15,
-     "rr_estructura": 9.9,
-     "confluencias": [
-      "underside 121.76"
-     ],
-     "n_conf": 0,
-     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "estado": "CONFIRMADO (vela de reacci\u00f3n cerrada)",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "AWK": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 150.81,
-   "setups": [
-    {
-     "tf": "5m",
-     "lado": "SHORT",
-     "modelo": "reversi\u00f3n",
-     "alineado_htf": false,
-     "zona": [
-      151.47500610351562,
-      152.11000061035156
-     ],
-     "entrada_ce": 151.79,
-     "stop": 152.29,
-     "riesgo_accion": 0.5,
-     "tp_4r": 149.79,
-     "tp_estructura": 150.14,
-     "rr_estructura": 3.3,
-     "confluencias": [
-      "underside 151.57"
-     ],
-     "n_conf": 0,
-     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
-     "fecha": "2026-11-05"
-    }
-   ]
+   "as_of_et": "2026-11-05 14:37",
+   "price": 150.885,
+   "setups": []
   },
   "SO": {
-   "as_of_et": "2026-11-05 14:32",
-   "price": 92.93,
+   "as_of_et": "2026-11-05 14:37",
+   "price": 92.84,
    "setups": [
     {
      "tf": "5m",
@@ -209,8 +115,8 @@
       "Fib 0.618 93.98"
      ],
      "n_conf": 2,
-     "estado": "ENTRADA PASADA (+2.3R): no perseguir",
-     "hora_vela_et": "2:35 PM",
+     "estado": "ENTRADA PASADA (+2.4R): no perseguir",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -233,7 +139,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -256,14 +162,14 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "TMUS": {
-   "as_of_et": "2026-11-05 14:32",
-   "price": 159.933,
+   "as_of_et": "2026-11-05 14:37",
+   "price": 159.93,
    "setups": [
     {
      "tf": "5m",
@@ -285,7 +191,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -308,14 +214,14 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "CMCSA": {
-   "as_of_et": "2026-11-05 14:32",
-   "price": 24.72,
+   "as_of_et": "2026-11-05 14:37",
+   "price": 24.725,
    "setups": [
     {
      "tf": "5m",
@@ -338,8 +244,8 @@
       "Fib 0.618 24.90"
      ],
      "n_conf": 2,
-     "estado": "ENTRADA PASADA (+1.1R): no perseguir",
-     "hora_vela_et": "2:35 PM",
+     "estado": "ENTRADA PASADA (+1.0R): no perseguir",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -363,14 +269,14 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "DUK": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 130.1,
+   "as_of_et": "2026-11-05 14:38",
+   "price": 130.03,
    "setups": [
     {
      "tf": "5m",
@@ -385,23 +291,23 @@
      "stop": 130.63,
      "riesgo_accion": 0.08,
      "tp_4r": 130.23,
-     "tp_estructura": 129.82,
-     "rr_estructura": 9.19,
+     "tp_estructura": 129.8,
+     "rr_estructura": 9.37,
      "confluencias": [
       "underside 130.54",
-      "Fib 0.5 130.48",
-      "Fib 0.618 130.64"
+      "Fib 0.5 130.47",
+      "Fib 0.618 130.63"
      ],
      "n_conf": 2,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "CMS": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 70.23,
+   "as_of_et": "2026-11-05 14:38",
+   "price": 70.215,
    "setups": [
     {
      "tf": "5m",
@@ -425,7 +331,7 @@
      ],
      "n_conf": 2,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -449,7 +355,7 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -472,7 +378,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -495,7 +401,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -518,7 +424,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -541,7 +447,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -564,19 +470,19 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
   },
   "QQQ": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 652.45,
+   "as_of_et": "2026-11-05 14:38",
+   "price": 653.265,
    "setups": []
   },
   "IWM": {
-   "as_of_et": "2026-11-05 14:33",
-   "price": 271.34,
+   "as_of_et": "2026-11-05 14:38",
+   "price": 271.52,
    "setups": [
     {
      "tf": "5m",
@@ -598,8 +504,8 @@
       "Fib 0.5 273.60"
      ],
      "n_conf": 1,
-     "estado": "ENTRADA PASADA (+4.4R): no perseguir",
-     "hora_vela_et": "2:35 PM",
+     "estado": "ENTRADA PASADA (+4.1R): no perseguir",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -623,7 +529,7 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -647,7 +553,7 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -670,7 +576,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -693,7 +599,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -716,7 +622,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     },
     {
@@ -739,7 +645,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:35 PM",
+     "hora_vela_et": "2:40 PM",
      "fecha": "2026-11-05"
     }
    ]
@@ -750,14 +656,10 @@
   "TMUS|SHORT|161.56-162.69": "INCOMPLETO",
   "CMCSA|SHORT|24.77-24.89": "ENTRADA PASADA",
   "CMCSA|SHORT|24.92-25.01": "esperando retroceso a la zona",
-  "ED|SHORT|120.64-120.73": "esperando retroceso a la zona",
-  "ED|SHORT|120.88-121.40": "ENTRADA PASADA",
-  "ED|SHORT|121.44-121.97": "INCOMPLETO",
-  "ED|SHORT|122.08-122.38": "INCOMPLETO",
+  "ED|SHORT|120.64-120.73": "CONFIRMADO",
   "SO|SHORT|93.72-94.54": "ENTRADA PASADA",
   "SO|SHORT|93.74-94.54": "INCOMPLETO",
   "SO|SHORT|94.65-94.89": "INCOMPLETO",
-  "AWK|SHORT|151.48-152.11": "INCOMPLETO",
   "DUK|SHORT|130.48-130.62": "esperando retroceso a la zona",
   "CMS|SHORT|71.13-71.42": "esperando retroceso a la zona",
   "CMS|SHORT|70.83-71.42": "esperando retroceso a la zona",
@@ -776,10 +678,11 @@
   "IWM|SHORT|281.64-282.94": "INCOMPLETO",
   "IWM|SHORT|282.97-283.59": "INCOMPLETO"
  },
- "as_of_et": "2026-11-05 14:33",
+ "as_of_et": "2026-11-05 14:38",
  "blocked": {
   "CMCSA": "BLOQUEADO por /trader-timemachine",
   "TMUS": "BLOQUEADO por /trader-timemachine",
-  "DUK": "BLOQUEADO por /trader-news"
+  "DUK": "BLOQUEADO por /trader-news",
+  "ED": "BLOQUEADO por /trader-timemachine"
  }
 }
