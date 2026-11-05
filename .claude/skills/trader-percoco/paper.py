@@ -4,6 +4,7 @@
   python3 paper.py open SPY     # opens a simulated trade if trader/percoco.json has a CONFIRMADO setup
   python3 paper.py update       # walks 1-minute bars: stop, target, breakeven, flat-by close
   python3 paper.py show
+  python3 paper.py cycle SPY ED AWK SO   # all of the above for a watchlist; prints only changes
 
 Rules (from SKILL.md + trader/config.json):
 - Only a CONFIRMADO setup (FVG + retest + Fib/RSI + reaction candle) opens a trade.
@@ -90,9 +91,9 @@ def today_trades(book, day):
     return [t for t in book["trades"] if t["date"] == day]
 
 
-def cmd_open(sym):
+def cmd_open(sym, sig=None):
     cfg = load(CFG, {})
-    sig = load(SIG, None)
+    sig = sig or load(SIG, None)
     book = load(BOOK, {"note": "Simulación en papel de setups Percoco. Ninguna orden real.", "trades": []})
     now = et_now()
     day = now.strftime("%Y-%m-%d")
@@ -232,8 +233,60 @@ def cmd_show():
     print("Resultado realizado: %+.2f USD" % tot)
 
 
+WATCH = os.path.join(ROOT, "trader/percoco_watch.json")
+
+
+def cmd_cycle(symbols):
+    """One pass over a watchlist: manage open trades, analyze each symbol,
+    open what is CONFIRMADO, and report only what changed since the last pass."""
+    import io, contextlib, subprocess
+    here = os.path.dirname(os.path.abspath(__file__))
+    events = []
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        cmd_update()
+    out = buf.getvalue().strip()
+    if out and not out.startswith("Sin cambios"):
+        events.append(out)
+    watch = load(WATCH, {"symbols": {}, "last": {}})
+    last = watch.get("last", {})
+    seen = {}
+    for sym in symbols:
+        r = subprocess.run([sys.executable, os.path.join(here, "percoco.py"), sym, "--json"],
+                           capture_output=True, text=True, cwd=ROOT)
+        try:
+            doc = json.loads(r.stdout)
+        except ValueError:
+            events.append("%s: sin datos (%s)" % (sym, (r.stderr or r.stdout).strip()[-120:]))
+            continue
+        watch["symbols"][sym] = {"as_of_et": doc["as_of_et"], "price": doc["price"], "setups": doc["setups"]}
+        for st in doc["setups"]:
+            key = "%s|%s|%.2f-%.2f" % (sym, st["lado"], st["zona"][0], st["zona"][1])
+            stat = st["estado"].split(" (")[0].split(":")[0]
+            seen[key] = stat
+            if stat in ("EN ZONA, esperando vela de reacción", "CONFIRMADO") and last.get(key) != stat:
+                events.append("%s %s %s: %s | zona %.2f-%.2f entrada %.2f stop %.2f" % (
+                    sym, st["lado"], st["tf"], stat, st["zona"][0], st["zona"][1], st["entrada_ce"], st["stop"]))
+        for key, stat in last.items():
+            if key.startswith(sym + "|") and key not in seen and stat != "INCOMPLETO":
+                events.append("%s: setup %s desapareció (invalidado o rellenado)" % (sym, key.split("|", 1)[1]))
+        if any(x["estado"].startswith("CONFIRMADO") for x in doc["setups"]):
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                cmd_open(sym, doc)
+            events.append(buf.getvalue().strip())
+        time.sleep(0.5)
+    watch["last"] = seen
+    watch["as_of_et"] = et_now().strftime("%Y-%m-%d %H:%M")
+    with open(WATCH, "w") as f:
+        json.dump(watch, f, indent=1, default=str)
+    open_n = sum(1 for t in load(BOOK, {"trades": []})["trades"] if t["status"] == "abierta")
+    print("\n".join(events) if events else "Sin cambios (%s). Operaciones abiertas: %d" % (", ".join(symbols), open_n))
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if not a or a[0] not in ("open", "update", "show"):
+    if not a or a[0] not in ("open", "update", "show", "cycle"):
         raise SystemExit(__doc__)
-    {"open": lambda: cmd_open(a[1].upper()), "update": cmd_update, "show": cmd_show}[a[0]]()
+    {"open": lambda: cmd_open(a[1].upper()), "update": cmd_update, "show": cmd_show,
+     "cycle": lambda: cmd_cycle([x.upper() for x in a[1:]] or ["SPY"])}[a[0]]()

@@ -87,7 +87,14 @@ python3 "${CLAUDE_SKILL_DIR}/percoco.py" SPY --write   # señal fresca
 python3 "${CLAUDE_SKILL_DIR}/paper.py" open SPY        # abre SOLO si hay setup CONFIRMADO
 python3 "${CLAUDE_SKILL_DIR}/paper.py" update          # stop, objetivo, breakeven, cierre 15:55
 python3 "${CLAUDE_SKILL_DIR}/paper.py" show
+python3 "${CLAUDE_SKILL_DIR}/paper.py" cycle SPY ED AWK SO  # todo junto para una lista; imprime solo cambios
 ```
+
+`cycle` gestiona lo abierto, analiza cada activo, abre en papel lo
+CONFIRMADO y avisa solo de cambios: un setup entra EN ZONA o se confirma,
+se abre o cierra una operación, un stop pasa a breakeven, o un setup
+desaparece (invalidado o rellenado). Estado en `trader/percoco_watch.json`.
+Ideal para `/loop 5m`.
 
 - Abre LONG o SHORT (SHORT requiere `"allow_short": true`).
 - Precio de llenado = precio actual ± 0.01 de deslizamiento; el riesgo se
