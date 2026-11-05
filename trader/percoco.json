@@ -1,8 +1,8 @@
 {
  "created_by": "trader-percoco",
  "symbol": "SPY",
- "price": 744.11,
- "as_of_et": "2026-11-05 11:41",
+ "price": 742.99,
+ "as_of_et": "2026-11-05 11:48",
  "bias": {
   "alcista": 0,
   "bajista": 1
@@ -29,7 +29,7 @@
    ],
    "n_conf": 1,
    "estado": "esperando retroceso a la zona",
-   "hora_vela_et": "11:45 AM",
+   "hora_vela_et": "11:50 AM",
    "fecha": "2026-11-05"
   },
   {
@@ -53,7 +53,7 @@
    ],
    "n_conf": 1,
    "estado": "esperando retroceso a la zona",
-   "hora_vela_et": "11:45 AM",
+   "hora_vela_et": "11:50 AM",
    "fecha": "2026-11-05"
   }
  ],
@@ -64,12 +64,12 @@
    "vela_en_formacion_excluida": true,
    "ultima_vela": {
     "hora_et": "11-05 11:30",
-    "o": 745.239990234375,
+    "o": 745.2550048828125,
     "h": 746.47998046875,
-    "l": 743.0700073242188,
-    "c": 744.1400146484375,
+    "l": 741.8699951171875,
+    "c": 743.0800170898438,
     "tipo": "bajista",
-    "cuerpo_pct_rango": 32
+    "cuerpo_pct_rango": 47
    },
    "estructura": "lateral / mixta (HH + LL)",
    "swings": [
@@ -150,7 +150,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -1.77,
+     "distancia_pct": -1.92,
      "vela_impulso_et": "11-05 09:30"
     },
     {
@@ -164,7 +164,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -3.01,
+     "distancia_pct": -3.16,
      "vela_impulso_et": "11-04 15:30"
     },
     {
@@ -178,7 +178,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": true,
-     "distancia_pct": -4.23,
+     "distancia_pct": -4.38,
      "vela_impulso_et": "10-14 09:30"
     },
     {
@@ -192,7 +192,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -4.39,
+     "distancia_pct": -4.54,
      "vela_impulso_et": "10-13 15:30"
     }
    ],
@@ -220,23 +220,23 @@
      "3.618": 607.0783344726563
     }
    },
-   "rsi14": 31.2,
-   "limpieza_eficiencia_20": 0.21,
-   "mecha_media_pct_20": 59,
-   "volumen_ultima_vs_media20": 0.2
+   "rsi14": 30.5,
+   "limpieza_eficiencia_20": 0.23,
+   "mecha_media_pct_20": 58,
+   "volumen_ultima_vs_media20": 0.29
   },
   {
    "tf": "15m",
    "velas": 599,
    "vela_en_formacion_excluida": true,
    "ultima_vela": {
-    "hora_et": "11-05 11:30",
-    "o": 745.239990234375,
-    "h": 746.47998046875,
-    "l": 743.0700073242188,
-    "c": 744.1400146484375,
-    "tipo": "bajista",
-    "cuerpo_pct_rango": 32
+    "hora_et": "11-05 11:45",
+    "o": 742.4199829101562,
+    "h": 743.3900146484375,
+    "l": 741.8699951171875,
+    "c": 743.0800170898438,
+    "tipo": "alcista",
+    "cuerpo_pct_rango": 43
    },
    "estructura": "bajista (LH + LL)",
    "swings": [
@@ -317,7 +317,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -0.68,
+     "distancia_pct": -0.82,
      "vela_impulso_et": "11-05 10:15"
     },
     {
@@ -331,7 +331,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.09,
+     "distancia_pct": -1.23,
      "vela_impulso_et": "11-05 10:00"
     },
     {
@@ -345,7 +345,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.59,
+     "distancia_pct": -1.73,
      "vela_impulso_et": "11-05 09:45"
     },
     {
@@ -359,7 +359,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -2.35,
+     "distancia_pct": -2.5,
      "vela_impulso_et": "11-05 09:30"
     },
     {
@@ -373,7 +373,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -3.01,
+     "distancia_pct": -3.16,
      "vela_impulso_et": "11-04 15:45"
     }
    ],
@@ -401,23 +401,23 @@
      "3.618": 632.241586303711
     }
    },
-   "rsi14": 24.3,
-   "limpieza_eficiencia_20": 0.69,
-   "mecha_media_pct_20": 48,
-   "volumen_ultima_vs_media20": 0.31
+   "rsi14": 24.6,
+   "limpieza_eficiencia_20": 0.67,
+   "mecha_media_pct_20": 47,
+   "volumen_ultima_vs_media20": 0.06
   },
   {
    "tf": "5m",
-   "velas": 339,
+   "velas": 340,
    "vela_en_formacion_excluida": true,
    "ultima_vela": {
-    "hora_et": "11-05 11:40",
-    "o": 744.6199951171875,
-    "h": 744.6599731445312,
-    "l": 743.8699951171875,
-    "c": 744.1400146484375,
-    "tipo": "bajista",
-    "cuerpo_pct_rango": 61
+    "hora_et": "11-05 11:45",
+    "o": 742.4199829101562,
+    "h": 743.3900146484375,
+    "l": 741.8699951171875,
+    "c": 743.0800170898438,
+    "tipo": "alcista",
+    "cuerpo_pct_rango": 43
    },
    "estructura": "bajista (LH + LL)",
    "swings": [
@@ -488,18 +488,18 @@
    ],
    "fvg_abiertos_cercanos": [
     {
-     "tipo": "alcista",
-     "techo": 742.4500122070312,
-     "piso": 742.0850219726562,
-     "ce": 742.2675170898438,
+     "tipo": "bajista",
+     "techo": 743.8599853515625,
+     "piso": 743.3900146484375,
+     "ce": 743.625,
      "vela_impulso_rango": [
-      741.6699829101562,
-      744.75
+      742.3543090820312,
+      744.6599731445312
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": 0.25,
-     "vela_impulso_et": "11-05 11:10"
+     "distancia_pct": -0.07,
+     "vela_impulso_et": "11-05 11:40"
     },
     {
      "tipo": "bajista",
@@ -512,7 +512,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": false,
-     "distancia_pct": -0.55,
+     "distancia_pct": -0.69,
      "vela_impulso_et": "11-05 10:20"
     },
     {
@@ -526,7 +526,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -0.73,
+     "distancia_pct": -0.87,
      "vela_impulso_et": "11-05 10:15"
     },
     {
@@ -540,7 +540,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.07,
+     "distancia_pct": -1.22,
      "vela_impulso_et": "11-05 10:05"
     },
     {
@@ -554,7 +554,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": false,
-     "distancia_pct": -1.46,
+     "distancia_pct": -1.6,
      "vela_impulso_et": "11-05 09:50"
     },
     {
@@ -568,7 +568,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.98,
+     "distancia_pct": -2.12,
      "vela_impulso_et": "11-05 09:40"
     }
    ],
@@ -596,10 +596,10 @@
      "3.618": 632.241586303711
     }
    },
-   "rsi14": 36.4,
-   "limpieza_eficiencia_20": 0.28,
-   "mecha_media_pct_20": 46,
-   "volumen_ultima_vs_media20": 0.04
+   "rsi14": 35.5,
+   "limpieza_eficiencia_20": 0.25,
+   "mecha_media_pct_20": 44,
+   "volumen_ultima_vs_media20": 0.08
   }
  ],
  "note": "Medici\u00f3n, no recomendaci\u00f3n. El veredicto aplica las reglas de SKILL.md."
