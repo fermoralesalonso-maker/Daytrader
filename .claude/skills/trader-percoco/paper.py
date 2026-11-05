@@ -277,7 +277,9 @@ def cmd_cycle(symbols):
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf):
                 cmd_open(sym, doc)
-            events.append(buf.getvalue().strip())
+            msg = buf.getvalue().strip()
+            if msg and not msg.startswith("Ya se operó esta zona"):
+                events.append(msg)
         time.sleep(0.5)
     watch["last"] = seen
     watch["as_of_et"] = et_now().strftime("%Y-%m-%d %H:%M")
