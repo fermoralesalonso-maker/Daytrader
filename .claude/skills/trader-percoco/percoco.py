@@ -311,8 +311,16 @@ def setups(sym, res, tol_pct=0.0015):
             touched = (last["l"] <= hi and last["h"] >= lo)
             react = touched and ((bull and last["c"] > last["o"] and last["c"] > g["ce"]) or
                                  (not bull and last["c"] < last["o"] and last["c"] < g["ce"]))
-            status = "CONFIRMADO (vela de reacción cerrada)" if react else \
-                     "EN ZONA, esperando vela de reacción" if touched else "esperando retroceso a la zona"
+            now = (ex.get("_meta") or {}).get("regularMarketPrice") or last["c"]
+            ran = ((now - entry) if bull else (entry - now)) / risk
+            if len(conf) < 2:
+                status = "INCOMPLETO: falta confluencia Fib/RSI (regla 11)"
+            elif ran > 0.5 and any(x["l"] <= hi and x["h"] >= lo for x in bars[g["i"] + 2:]):
+                status = "ENTRADA PASADA (+%.1fR): no perseguir" % ran
+            elif react:
+                status = "CONFIRMADO (vela de reacción cerrada)"
+            else:
+                status = "EN ZONA, esperando vela de reacción" if touched else "esperando retroceso a la zona"
             out.append({"tf": a["tf"], "lado": "LONG" if bull else "SHORT",
                         "modelo": ("continuación" if bias["alcista" if bull else "bajista"] >= 1 else "reversión"),
                         "alineado_htf": bias["alcista" if bull else "bajista"] >= 1,
