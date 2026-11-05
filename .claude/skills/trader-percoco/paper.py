@@ -13,8 +13,10 @@ Rules (from SKILL.md + trader/config.json):
 - SHORT only when "allow_short": true.
 - Entry window no_entries_before..no_entries_after, max_trades_per_day,
   max_daily_loss_usd (realized losses + open risk), one trade per zone.
-- Target 4R (Percoco's initial reference). Stop to breakeven once a bar
-  closes beyond the structural swing (Modelo B rule). Out at flat_by.
+- Exits: TP1 at 2R closes half and moves the stop to breakeven (with 1 share:
+  stop to +1R instead). The rest runs to the structural swing when it sits
+  between 2R and 4R, otherwise to 4R. Before TP1, a close beyond the swing
+  moves the stop to breakeven (Modelo B rule). Out at flat_by.
 - A bar that touches both stop and target counts as the stop (conservative).
 """
 import datetime, json, math, os, sys, time, urllib.request
@@ -134,27 +136,54 @@ def cmd_open(sym):
     open_risk = sum(t["risk_usd"] for t in tt if t["status"] == "abierta")
     if -realized + open_risk + shares * risk > cfg.get("max_daily_loss_usd", 30):
         return print("BLOQUEADO: superaría la pérdida diaria máxima (%s USD)." % cfg.get("max_daily_loss_usd"))
-    target = round(fill + 4 * risk if long_ else fill - 4 * risk, 2)
+    sgn = 1 if long_ else -1
+    tp1 = round(fill + sgn * 2 * risk, 2)
+    swing_r = (s["tp_estructura"] - fill) * sgn / risk
+    final_r = swing_r if 2 < swing_r <= 4 else 4
+    target = round(fill + sgn * final_r * risk, 2)
     t = {"key": key, "date": day, "symbol": sym, "side": side, "model": s["modelo"], "tf": s["tf"],
          "opened_et": now.strftime("%H:%M"), "opened_ts": int(time.time()), "entry": fill, "ideal_ce": s["entrada_ce"],
-         "stop": stop, "stop_initial": stop, "target": target, "swing": s["tp_estructura"], "breakeven": False,
+         "stop": stop, "stop_initial": stop, "tp1": tp1, "tp1_done": False, "partial_shares": 0, "partial_price": None,
+         "target": target, "target_r": round(final_r, 2), "swing": s["tp_estructura"], "breakeven": False,
          "shares": shares, "size_limit": limit, "risk_usd": round(shares * risk, 2), "confluences": s["confluencias"],
          "status": "abierta"}
     book["trades"].append(t)
     save(book)
-    print("SIMULADA ABIERTA: %s %s %d acc a %.2f (CE ideal %.2f) | stop %.2f | objetivo 4R %.2f | riesgo %.2f USD | límite de tamaño: %s" % (
-        side, sym, shares, fill, s["entrada_ce"], stop, target, t["risk_usd"], limit))
+    print("SIMULADA ABIERTA: %s %s %d acc a %.2f (CE ideal %.2f) | stop %.2f | TP1 2R %.2f | objetivo final %.2f (%.1fR) | riesgo %.2f USD | límite de tamaño: %s" % (
+        side, sym, shares, fill, s["entrada_ce"], stop, tp1, target, final_r, t["risk_usd"], limit))
 
 
 def close(t, price, why, when):
     long_ = t["side"] == "LONG"
+    sgn = 1 if long_ else -1
     exitp = round(price - SLIP if long_ else price + SLIP, 2)
-    pnl = (exitp - t["entry"]) * t["shares"] * (1 if long_ else -1)
+    rest = t["shares"] - t.get("partial_shares", 0)
+    pnl = (exitp - t["entry"]) * rest * sgn
+    if t.get("partial_shares"):
+        pnl += (t["partial_price"] - t["entry"]) * t["partial_shares"] * sgn
     r1 = abs(t["entry"] - t["stop_initial"])
     t.update({"status": "cerrada", "exit": exitp, "exit_why": why, "closed_et": when,
               "pnl_usd": round(pnl, 2), "r_multiple": round(pnl / (r1 * t["shares"]), 2) if r1 else None})
-    return "SIMULADA CERRADA: %s %s %s a %.2f (%s) -> %+.2f USD (%+.2fR)" % (
-        t["side"], t["symbol"], t["shares"], exitp, why, t["pnl_usd"], t["r_multiple"] or 0)
+    return "SIMULADA CERRADA: %s %s %s acc a %.2f (%s) -> %+.2f USD (%+.2fR)" % (
+        t["side"], t["symbol"], rest, exitp, why, t["pnl_usd"], t["r_multiple"] or 0)
+
+
+def take_tp1(t, when):
+    """At 2R: close half (if 2+ shares) and move the stop to breakeven.
+    With 1 share nothing can be split: lock +1R on the stop and let it run."""
+    long_ = t["side"] == "LONG"
+    sgn = 1 if long_ else -1
+    r1 = abs(t["entry"] - t["stop_initial"])
+    t["tp1_done"] = True
+    if t["shares"] >= 2:
+        t["partial_shares"] = t["shares"] // 2
+        t["partial_price"] = round(t["tp1"] - SLIP * sgn, 2)
+        t["stop"], t["breakeven"] = t["entry"], True
+        return "SIMULADA: %s %s TP1 2R: cerradas %d acc a %.2f; stop del resto a breakeven %.2f" % (
+            t["side"], t["symbol"], t["partial_shares"], t["partial_price"], t["entry"])
+    t["stop"], t["breakeven"] = round(t["entry"] + sgn * r1, 2), True
+    return "SIMULADA: %s %s llegó a 2R (%.2f): 1 sola acción, stop sube a +1R %.2f y sigue hacia %.2f" % (
+        t["side"], t["symbol"], t["tp1"], t["stop"], t["target"])
 
 
 def cmd_update():
@@ -170,16 +199,19 @@ def cmd_update():
             hit_stop = b["l"] <= t["stop"] if long_ else b["h"] >= t["stop"]
             hit_tgt = b["h"] >= t["target"] if long_ else b["l"] <= t["target"]
             if hit_stop:
-                msgs.append(close(t, t["stop"], "breakeven" if t["breakeven"] else "stop", when.strftime("%H:%M")))
+                why = "stop inicial" if not t["breakeven"] else ("stop protegido" if t.get("tp1_done") else "breakeven")
+                msgs.append(close(t, t["stop"], why, when.strftime("%H:%M")))
                 break
+            if not t.get("tp1_done") and (b["h"] >= t["tp1"] if long_ else b["l"] <= t["tp1"]):
+                msgs.append(take_tp1(t, when))
             if hit_tgt:
-                msgs.append(close(t, t["target"], "objetivo 4R", when.strftime("%H:%M")))
+                msgs.append(close(t, t["target"], "objetivo final %.1fR" % t.get("target_r", 4), when.strftime("%H:%M")))
                 break
             if when.time() >= flat:
                 msgs.append(close(t, b["c"], "cierre por horario %s" % cfg.get("flat_by", "15:55"), when.strftime("%H:%M")))
                 break
             beyond = b["c"] > t["swing"] if long_ else b["c"] < t["swing"]
-            if not t["breakeven"] and beyond:
+            if not t["breakeven"] and beyond and not t.get("tp1_done"):
                 t["breakeven"], t["stop"] = True, t["entry"]
                 msgs.append("SIMULADA: %s %s stop movido a breakeven %.2f (cerró más allá del swing %.2f)" % (
                     t["side"], t["symbol"], t["entry"], t["swing"]))

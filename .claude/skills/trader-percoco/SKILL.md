@@ -95,9 +95,12 @@ python3 "${CLAUDE_SKILL_DIR}/paper.py" show
 - Tamaño = pérdida máx. por operación / riesgo por acción, con tope de orden,
   posición y efectivo. Respeta ventana de entradas, operaciones por día,
   pérdida diaria y una sola operación por zona.
-- Objetivo 4R; stop a breakeven cuando una vela de 1m cierra más allá del
-  swing estructural; si una vela toca stop y objetivo cuenta como stop;
-  cierre obligatorio a `flat_by`.
+- Salidas [Adaptación, objetivo realista]: en 2R se cierra la mitad y el
+  stop del resto pasa a breakeven (con 1 sola acción: el stop sube a +1R).
+  El resto corre hasta el swing estructural si queda entre 2R y 4R; si no,
+  hasta 4R (referencia de Percoco). Antes de 2R, un cierre más allá del
+  swing mueve el stop a breakeven. Si una vela toca stop y objetivo cuenta
+  como stop. Cierre obligatorio a `flat_by`.
 
 ## 1. Filtro inicial del mercado [Documentado]
 
