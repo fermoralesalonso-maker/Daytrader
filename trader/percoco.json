@@ -1,8 +1,8 @@
 {
  "created_by": "trader-percoco",
  "symbol": "SPY",
- "price": 740.1,
- "as_of_et": "2026-11-05 12:07",
+ "price": 739.922,
+ "as_of_et": "2026-11-05 12:12",
  "bias": {
   "alcista": 0,
   "bajista": 1
@@ -29,7 +29,7 @@
    ],
    "n_conf": 1,
    "estado": "esperando retroceso a la zona",
-   "hora_vela_et": "12:10 PM",
+   "hora_vela_et": "12:15 PM",
    "fecha": "2026-11-05"
   },
   {
@@ -53,7 +53,7 @@
    ],
    "n_conf": 1,
    "estado": "esperando retroceso a la zona",
-   "hora_vela_et": "12:10 PM",
+   "hora_vela_et": "12:15 PM",
    "fecha": "2026-11-05"
   }
  ],
@@ -67,9 +67,9 @@
     "o": 745.2550048828125,
     "h": 746.47998046875,
     "l": 739.72998046875,
-    "c": 740.1024780273438,
+    "c": 740.3699951171875,
     "tipo": "bajista",
-    "cuerpo_pct_rango": 76
+    "cuerpo_pct_rango": 72
    },
    "estructura": "lateral / mixta (HH + LL)",
    "swings": [
@@ -150,7 +150,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -2.33,
+     "distancia_pct": -2.29,
      "vela_impulso_et": "11-05 09:30"
     },
     {
@@ -164,7 +164,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -3.57,
+     "distancia_pct": -3.54,
      "vela_impulso_et": "11-04 15:30"
     },
     {
@@ -178,7 +178,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": true,
-     "distancia_pct": -4.8,
+     "distancia_pct": -4.76,
      "vela_impulso_et": "10-14 09:30"
     },
     {
@@ -192,7 +192,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -4.96,
+     "distancia_pct": -4.92,
      "vela_impulso_et": "10-13 15:30"
     }
    ],
@@ -220,10 +220,10 @@
      "3.618": 607.0783344726563
     }
    },
-   "rsi14": 28.5,
+   "rsi14": 28.7,
    "limpieza_eficiencia_20": 0.27,
    "mecha_media_pct_20": 57,
-   "volumen_ultima_vs_media20": 0.49
+   "volumen_ultima_vs_media20": 0.54
   },
   {
    "tf": "15m",
@@ -234,9 +234,9 @@
     "o": 742.1799926757812,
     "h": 742.1799926757812,
     "l": 739.72998046875,
-    "c": 740.1024780273438,
+    "c": 740.3699951171875,
     "tipo": "bajista",
-    "cuerpo_pct_rango": 85
+    "cuerpo_pct_rango": 74
    },
    "estructura": "bajista (LH + LL)",
    "swings": [
@@ -317,7 +317,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -0.29,
+     "distancia_pct": -0.26,
      "vela_impulso_et": "11-05 11:45"
     },
     {
@@ -331,7 +331,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.23,
+     "distancia_pct": -1.19,
      "vela_impulso_et": "11-05 10:15"
     },
     {
@@ -345,7 +345,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.64,
+     "distancia_pct": -1.6,
      "vela_impulso_et": "11-05 10:00"
     },
     {
@@ -359,7 +359,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -2.14,
+     "distancia_pct": -2.11,
      "vela_impulso_et": "11-05 09:45"
     },
     {
@@ -373,7 +373,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -2.91,
+     "distancia_pct": -2.87,
      "vela_impulso_et": "11-05 09:30"
     },
     {
@@ -387,7 +387,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": true,
-     "distancia_pct": -3.58,
+     "distancia_pct": -3.54,
      "vela_impulso_et": "11-04 15:45"
     }
    ],
@@ -415,23 +415,23 @@
      "3.618": 632.241586303711
     }
    },
-   "rsi14": 20.8,
+   "rsi14": 21.0,
    "limpieza_eficiencia_20": 0.71,
    "mecha_media_pct_20": 47,
-   "volumen_ultima_vs_media20": 0.13
+   "volumen_ultima_vs_media20": 0.21
   },
   {
    "tf": "5m",
-   "velas": 344,
+   "velas": 345,
    "vela_en_formacion_excluida": true,
    "ultima_vela": {
-    "hora_et": "11-05 12:05",
-    "o": 740.030029296875,
-    "h": 740.5800170898438,
-    "l": 739.72998046875,
-    "c": 740.1024780273438,
-    "tipo": "alcista",
-    "cuerpo_pct_rango": 9
+    "hora_et": "11-05 12:10",
+    "o": 740.6099853515625,
+    "h": 741.3049926757812,
+    "l": 739.9199829101562,
+    "c": 740.3699951171875,
+    "tipo": "bajista",
+    "cuerpo_pct_rango": 17
    },
    "estructura": "bajista (LH + LL)",
    "swings": [
@@ -496,15 +496,15 @@
     {
      "tipo": "bajista",
      "techo": 741.4298706054688,
-     "piso": 740.5800170898438,
-     "ce": 741.0049438476562,
+     "piso": 741.2000122070312,
+     "ce": 741.31494140625,
      "vela_impulso_rango": [
       740.010009765625,
       742.1799926757812
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -0.12,
+     "distancia_pct": -0.13,
      "vela_impulso_et": "11-05 12:00"
     },
     {
@@ -518,7 +518,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -0.48,
+     "distancia_pct": -0.44,
      "vela_impulso_et": "11-05 11:40"
     },
     {
@@ -532,7 +532,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": false,
-     "distancia_pct": -1.1,
+     "distancia_pct": -1.06,
      "vela_impulso_et": "11-05 10:20"
     },
     {
@@ -546,7 +546,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.28,
+     "distancia_pct": -1.24,
      "vela_impulso_et": "11-05 10:15"
     },
     {
@@ -560,7 +560,7 @@
      ],
      "estado": "abierto",
      "gap_apertura": false,
-     "distancia_pct": -1.63,
+     "distancia_pct": -1.59,
      "vela_impulso_et": "11-05 10:05"
     },
     {
@@ -574,7 +574,7 @@
      ],
      "estado": "mitigado al CE",
      "gap_apertura": false,
-     "distancia_pct": -2.01,
+     "distancia_pct": -1.97,
      "vela_impulso_et": "11-05 09:50"
     }
    ],
@@ -602,10 +602,10 @@
      "3.618": 632.241586303711
     }
    },
-   "rsi14": 29.2,
-   "limpieza_eficiencia_20": 0.28,
-   "mecha_media_pct_20": 48,
-   "volumen_ultima_vs_media20": 0.06
+   "rsi14": 31.1,
+   "limpieza_eficiencia_20": 0.22,
+   "mecha_media_pct_20": 47,
+   "volumen_ultima_vs_media20": 0.05
   }
  ],
  "note": "Medici\u00f3n, no recomendaci\u00f3n. El veredicto aplica las reglas de SKILL.md."
