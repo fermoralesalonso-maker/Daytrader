@@ -28,7 +28,12 @@
     "underside 121.76",
     "Fib 0.5 121.49"
    ],
-   "status": "abierta"
+   "status": "cerrada",
+   "exit": 120.99,
+   "exit_why": "breakeven",
+   "closed_et": "12:57",
+   "pnl_usd": -0.02,
+   "r_multiple": -0.02
   }
  ]
 }
