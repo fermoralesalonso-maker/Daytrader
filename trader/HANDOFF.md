@@ -68,3 +68,11 @@ Actualizado: 2026-11-05 13:19 ET. Leer junto con `CLAUDE.md`.
    candidatos.
 3. Decidir la lista a vigilar y arrancar `/loop 5m paper.py cycle ...`.
 4. Ir acumulando operaciones en papel para medir el porcentaje de aciertos.
+
+## Sesión 2026-11-05 13:35 ET
+
+- ED corto sigue abierto (precio ~121.10, -0.2 USD flotante, stop 121.45).
+- Escáner ORB 13:24: 111 de 200 rupturas. Percoco sobre 115 activos:
+  0 CONFIRMADO; EN ZONA: TMUS, CMCSA, ED (cortos 5m, contra sesgo 1h).
+  SO se invalidó. SPY/QQQ/IWM caen 4–6 %, sin zona cercana.
+- Loop activo: `paper.py cycle TMUS CMCSA ED SO AWK DUK CMS SPY QQQ IWM` cada 5 min.
