@@ -1,6 +1,7 @@
 # Daytrader — FEMO servicios industriales
 
 Responder en español, simple y corto (el usuario lee en el teléfono).
+Al iniciar una sesión, leer `trader/HANDOFF.md` (estado y lo aprendido).
 
 ## Proceso de trading (recuérdaselo al usuario en cada aviso de operación)
 
