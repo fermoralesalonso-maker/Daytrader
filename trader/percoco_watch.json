@@ -217,18 +217,18 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 14:36",
-   "price": 690.74,
+   "as_of_et": "2026-11-06 14:41",
+   "price": 690.085,
    "setups": []
   },
   "AMD": {
-   "as_of_et": "2026-11-06 14:36",
-   "price": 444.74,
+   "as_of_et": "2026-11-06 14:41",
+   "price": 444.29,
    "setups": []
   }
  },
  "last": {},
- "as_of_et": "2026-11-06 14:36",
+ "as_of_et": "2026-11-06 14:41",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
