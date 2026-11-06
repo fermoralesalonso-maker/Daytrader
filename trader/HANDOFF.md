@@ -1,6 +1,6 @@
 # Traspaso de sesión — Percoco + skills /trader
 
-Actualizado: 2026-11-05 13:19 ET. Leer junto con `CLAUDE.md`.
+Actualizado: 2026-11-06 15:57 ET. Leer junto con `CLAUDE.md`.
 
 ## Qué existe en el repo
 
@@ -60,6 +60,25 @@ Actualizado: 2026-11-05 13:19 ET. Leer junto con `CLAUDE.md`.
   de 225 USD. El punto de equilibrio es acertar ~25 % con salidas de ~3R.
   Antes de usar dinero real, juntar 20–30 operaciones en papel y medir el
   porcentaje de aciertos.
+
+## Lo aprendido el 2026-11-06
+
+- Tras la caída del 5-nov (chips -11 %, MU/AMD -17 %, por temor a que la
+  victoria demócrata frene los centros de datos), el 6-nov rebotó todo:
+  121 de 200 rupturas de rango a las 10:03 y 147 de 200 a las 13:06.
+- Rotación del último mes: entra dinero a consumo básico, salud, inmobiliario,
+  financieras y bonos largos; sale de chips/IA. Co-Invest: los traders
+  rentables van contra la multitud (que compra chips en caída).
+- **Bug corregido en `percoco.py`**: Yahoo agrega una vela de 16:00 sin rango;
+  creaba FVG falsos al precio de cierre. Ahora solo velas 09:30-16:00 ET
+  (rama `fix/percoco-solo-sesion-regular`, falta unir a `master`).
+- Vigilancia de MU y AMD 10:12-15:57: AMD SHORT 5m CONFIRMADO a las 13:24
+  (entrada 439.17, stop 442.16) pero BLOQUEADO por /trader-news con un
+  titular genérico sobre elecciones. MU SHORT 5m en zona 13:43, desapareció.
+  Cero operaciones.
+- **Pendiente**: el filtro de noticias es demasiado estricto (bloquea
+  titulares que no son de la empresa). Revisarlo.
+- Quiver Quant no tiene suscripción activa (Congreso, insiders, dark pool).
 
 ## Pendiente
 
