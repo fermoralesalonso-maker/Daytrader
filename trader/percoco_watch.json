@@ -217,8 +217,8 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 13:58",
-   "price": 691.155,
+   "as_of_et": "2026-11-06 14:03",
+   "price": 690.552,
    "setups": [
     {
      "tf": "5m",
@@ -240,21 +240,46 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:00 PM",
+     "hora_vela_et": "2:05 PM",
      "fecha": "2026-11-06"
     }
    ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 13:58",
-   "price": 443.619,
-   "setups": []
+   "as_of_et": "2026-11-06 14:03",
+   "price": 444.315,
+   "setups": [
+    {
+     "tf": "5m",
+     "lado": "LONG",
+     "modelo": "continuaci\u00f3n",
+     "alineado_htf": true,
+     "zona": [
+      442.9200134277344,
+      444.1300048828125
+     ],
+     "entrada_ce": 443.53,
+     "stop": 441.95,
+     "riesgo_accion": 1.58,
+     "tp_4r": 449.85,
+     "tp_estructura": 446.0,
+     "rr_estructura": 1.56,
+     "confluencias": [
+      "overside 442.96"
+     ],
+     "n_conf": 0,
+     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
+     "hora_vela_et": "2:05 PM",
+     "fecha": "2026-11-06"
+    }
+   ]
   }
  },
  "last": {
-  "MU|SHORT|694.09-694.69": "INCOMPLETO"
+  "MU|SHORT|694.09-694.69": "INCOMPLETO",
+  "AMD|LONG|442.92-444.13": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 13:58",
+ "as_of_et": "2026-11-06 14:03",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
