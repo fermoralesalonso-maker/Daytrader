@@ -217,13 +217,13 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 14:07",
-   "price": 691.81,
+   "as_of_et": "2026-11-06 14:12",
+   "price": 693.685,
    "setups": []
   },
   "AMD": {
-   "as_of_et": "2026-11-06 14:07",
-   "price": 445.081,
+   "as_of_et": "2026-11-06 14:12",
+   "price": 447.0,
    "setups": [
     {
      "tf": "5m",
@@ -238,14 +238,14 @@
      "stop": 441.95,
      "riesgo_accion": 1.58,
      "tp_4r": 449.85,
-     "tp_estructura": 446.2,
-     "rr_estructura": 1.69,
+     "tp_estructura": 447.58,
+     "rr_estructura": 2.56,
      "confluencias": [
       "overside 445.00"
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "2:10 PM",
+     "hora_vela_et": "2:15 PM",
      "fecha": "2026-11-06"
     }
    ]
@@ -254,7 +254,7 @@
  "last": {
   "AMD|LONG|442.92-444.13": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 14:07",
+ "as_of_et": "2026-11-06 14:12",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
