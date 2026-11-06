@@ -215,17 +215,18 @@
      "fecha": "2026-11-05"
     }
    ]
+  },
+  "MU": {
+   "as_of_et": "2026-11-06 10:12",
+   "price": 701.98,
+   "setups": []
+  },
+  "AMD": {
+   "as_of_et": "2026-11-06 10:12",
+   "price": 446.62,
+   "setups": []
   }
  },
- "last": {
-  "SPY|SHORT|751.67-752.83": "esperando retroceso a la zona",
-  "SPY|SHORT|755.02-756.90": "esperando retroceso a la zona",
-  "ED|SHORT|121.44-121.97": "esperando retroceso a la zona",
-  "ED|SHORT|120.88-121.40": "ENTRADA PASADA",
-  "ED|SHORT|122.08-122.38": "INCOMPLETO",
-  "AWK|SHORT|151.48-152.11": "esperando retroceso a la zona",
-  "SO|SHORT|94.71-95.31": "esperando retroceso a la zona",
-  "SO|SHORT|95.38-95.50": "INCOMPLETO"
- },
- "as_of_et": "2026-11-05 13:14"
+ "last": {},
+ "as_of_et": "2026-11-06 10:12"
 }
