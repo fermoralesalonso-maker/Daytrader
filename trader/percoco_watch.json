@@ -217,8 +217,8 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 13:34",
-   "price": 688.07,
+   "as_of_et": "2026-11-06 13:39",
+   "price": 685.88,
    "setups": [
     {
      "tf": "5m",
@@ -236,11 +236,13 @@
      "tp_estructura": 679.5,
      "rr_estructura": 1.82,
      "confluencias": [
-      "underside 692.27"
+      "underside 692.27",
+      "Fib 0.5 689.19",
+      "Fib 0.618 691.47"
      ],
-     "n_conf": 0,
-     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:35 PM",
+     "n_conf": 2,
+     "estado": "ENTRADA PASADA (+0.6R): no perseguir",
+     "hora_vela_et": "1:40 PM",
      "fecha": "2026-11-06"
     },
     {
@@ -263,47 +265,47 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:35 PM",
+     "hora_vela_et": "1:40 PM",
      "fecha": "2026-11-06"
     }
    ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 13:34",
-   "price": 442.18,
+   "as_of_et": "2026-11-06 13:39",
+   "price": 439.97,
    "setups": [
     {
      "tf": "5m",
-     "lado": "SHORT",
+     "lado": "LONG",
      "modelo": "continuaci\u00f3n",
      "alineado_htf": true,
      "zona": [
-      442.14990234375,
-      442.989990234375
+      439.4800109863281,
+      439.8999938964844
      ],
-     "entrada_ce": 442.57,
-     "stop": 443.95,
-     "riesgo_accion": 1.38,
-     "tp_4r": 437.05,
-     "tp_estructura": 433.3,
-     "rr_estructura": 6.72,
+     "entrada_ce": 439.69,
+     "stop": 438.16,
+     "riesgo_accion": 1.53,
+     "tp_4r": 445.81,
+     "tp_estructura": 442.96,
+     "rr_estructura": 2.14,
      "confluencias": [
-      "underside 441.65"
+      "overside 439.26"
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:35 PM",
+     "hora_vela_et": "1:40 PM",
      "fecha": "2026-11-06"
     }
    ]
   }
  },
  "last": {
-  "MU|SHORT|686.81-691.04": "INCOMPLETO",
+  "MU|SHORT|686.81-691.04": "ENTRADA PASADA",
   "MU|SHORT|694.09-694.69": "INCOMPLETO",
-  "AMD|SHORT|442.15-442.99": "INCOMPLETO"
+  "AMD|LONG|439.48-439.90": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 13:34",
+ "as_of_et": "2026-11-06 13:39",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
