@@ -217,42 +217,16 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 11:42",
-   "price": 696.74,
-   "setups": [
-    {
-     "tf": "5m",
-     "lado": "LONG",
-     "modelo": "continuaci\u00f3n",
-     "alineado_htf": true,
-     "zona": [
-      696.2899780273438,
-      696.3099975585938
-     ],
-     "entrada_ce": 696.3,
-     "stop": 693.85,
-     "riesgo_accion": 2.45,
-     "tp_4r": 706.1,
-     "tp_estructura": 702.3,
-     "rr_estructura": 2.45,
-     "confluencias": [
-      "overside 697.00"
-     ],
-     "n_conf": 0,
-     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "11:45 AM",
-     "fecha": "2026-11-06"
-    }
-   ]
+   "as_of_et": "2026-11-06 11:47",
+   "price": 695.475,
+   "setups": []
   },
   "AMD": {
-   "as_of_et": "2026-11-06 11:42",
-   "price": 443.21,
+   "as_of_et": "2026-11-06 11:47",
+   "price": 443.75,
    "setups": []
   }
  },
- "last": {
-  "MU|LONG|696.29-696.31": "INCOMPLETO"
- },
- "as_of_et": "2026-11-06 11:42"
+ "last": {},
+ "as_of_et": "2026-11-06 11:47"
 }
