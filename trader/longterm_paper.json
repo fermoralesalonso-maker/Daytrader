@@ -1,0 +1,16 @@
+{
+  "note": "Simulación en papel a mediano/largo plazo (6-12 meses). Sin órdenes reales. Compra en 3 partes: 1/3 hoy, 1/3 en 2-3 semanas, 1/3 tras resultados de NVDA (17-nov) o si el QQQ recupera su promedio de 200 días.",
+  "opened": "2026-11-06",
+  "prices_as_of": "2026-11-05 close",
+  "capital_usd": 900,
+  "positions": [
+    {"symbol": "QQQ",   "usd": 300, "ref_price": 647.05, "review_below": 550.0},
+    {"symbol": "NVDA",  "usd": 150, "ref_price": 181.60, "review_below": 145.0},
+    {"symbol": "GOOGL", "usd": 150, "ref_price": 282.57, "review_below": 230.0},
+    {"symbol": "TSM",   "usd": 100, "ref_price": 353.10, "review_below": 285.0},
+    {"symbol": "META",  "usd": 100, "ref_price": 605.08, "review_below": 490.0},
+    {"symbol": "AVGO",  "usd": 100, "ref_price": 291.53, "review_below": 235.0}
+  ],
+  "mc_12m_10000": {"p10": 719, "p50": 1006, "p90": 1399, "prob_gain_pct": 66, "median_max_drawdown_pct": -22},
+  "review_below_rule": "cierre semanal ~20% bajo el precio de referencia: revisar tesis, no vender en automático"
+}
