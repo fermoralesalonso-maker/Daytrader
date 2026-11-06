@@ -217,8 +217,8 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 13:03",
-   "price": 681.63,
+   "as_of_et": "2026-11-06 13:10",
+   "price": 683.99,
    "setups": [
     {
      "tf": "5m",
@@ -240,7 +240,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:05 PM",
+     "hora_vela_et": "1:10 PM",
      "fecha": "2026-11-06"
     },
     {
@@ -263,14 +263,14 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:05 PM",
+     "hora_vela_et": "1:10 PM",
      "fecha": "2026-11-06"
     }
    ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 13:03",
-   "price": 435.6,
+   "as_of_et": "2026-11-06 13:10",
+   "price": 438.07,
    "setups": [
     {
      "tf": "5m",
@@ -293,8 +293,8 @@
       "Fib 0.618 440.53"
      ],
      "n_conf": 2,
-     "estado": "ENTRADA PASADA (+1.2R): no perseguir",
-     "hora_vela_et": "1:05 PM",
+     "estado": "EN ZONA, esperando vela de reacci\u00f3n",
+     "hora_vela_et": "1:10 PM",
      "fecha": "2026-11-06"
     },
     {
@@ -317,7 +317,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:05 PM",
+     "hora_vela_et": "1:10 PM",
      "fecha": "2026-11-06"
     }
    ]
@@ -326,8 +326,8 @@
  "last": {
   "MU|SHORT|686.81-691.04": "INCOMPLETO",
   "MU|SHORT|694.09-694.69": "INCOMPLETO",
-  "AMD|SHORT|437.83-440.50": "ENTRADA PASADA",
+  "AMD|SHORT|437.83-440.50": "EN ZONA, esperando vela de reacci\u00f3n",
   "AMD|SHORT|442.15-442.99": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 13:03"
+ "as_of_et": "2026-11-06 13:10"
 }
