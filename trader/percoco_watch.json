@@ -217,8 +217,8 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 13:29",
-   "price": 682.698,
+   "as_of_et": "2026-11-06 13:34",
+   "price": 688.07,
    "setups": [
     {
      "tf": "5m",
@@ -240,7 +240,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:30 PM",
+     "hora_vela_et": "1:35 PM",
      "fecha": "2026-11-06"
     },
     {
@@ -263,40 +263,15 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:30 PM",
+     "hora_vela_et": "1:35 PM",
      "fecha": "2026-11-06"
     }
    ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 13:29",
-   "price": 439.17,
+   "as_of_et": "2026-11-06 13:34",
+   "price": 442.18,
    "setups": [
-    {
-     "tf": "5m",
-     "lado": "SHORT",
-     "modelo": "continuaci\u00f3n",
-     "alineado_htf": true,
-     "zona": [
-      437.8299865722656,
-      440.5000915527344
-     ],
-     "entrada_ce": 439.17,
-     "stop": 442.16,
-     "riesgo_accion": 2.99,
-     "tp_4r": 427.21,
-     "tp_estructura": 433.3,
-     "rr_estructura": 1.96,
-     "confluencias": [
-      "underside 441.65",
-      "Fib 0.5 439.15",
-      "Fib 0.618 440.53"
-     ],
-     "n_conf": 2,
-     "estado": "CONFIRMADO (vela de reacci\u00f3n cerrada)",
-     "hora_vela_et": "1:30 PM",
-     "fecha": "2026-11-06"
-    },
     {
      "tf": "5m",
      "lado": "SHORT",
@@ -317,7 +292,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:30 PM",
+     "hora_vela_et": "1:35 PM",
      "fecha": "2026-11-06"
     }
    ]
@@ -326,10 +301,9 @@
  "last": {
   "MU|SHORT|686.81-691.04": "INCOMPLETO",
   "MU|SHORT|694.09-694.69": "INCOMPLETO",
-  "AMD|SHORT|437.83-440.50": "CONFIRMADO",
   "AMD|SHORT|442.15-442.99": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 13:29",
+ "as_of_et": "2026-11-06 13:34",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
