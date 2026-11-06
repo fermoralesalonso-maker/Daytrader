@@ -217,16 +217,67 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 12:34",
-   "price": 693.375,
-   "setups": []
+   "as_of_et": "2026-11-06 12:39",
+   "price": 685.89,
+   "setups": [
+    {
+     "tf": "5m",
+     "lado": "SHORT",
+     "modelo": "continuaci\u00f3n",
+     "alineado_htf": true,
+     "zona": [
+      694.0900268554688,
+      694.6900024414062
+     ],
+     "entrada_ce": 694.39,
+     "stop": 696.74,
+     "riesgo_accion": 2.35,
+     "tp_4r": 684.99,
+     "tp_estructura": 683.5,
+     "rr_estructura": 4.63,
+     "confluencias": [
+      "underside 692.27"
+     ],
+     "n_conf": 0,
+     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
+     "hora_vela_et": "12:40 PM",
+     "fecha": "2026-11-06"
+    }
+   ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 12:35",
-   "price": 442.04,
-   "setups": []
+   "as_of_et": "2026-11-06 12:39",
+   "price": 437.225,
+   "setups": [
+    {
+     "tf": "5m",
+     "lado": "SHORT",
+     "modelo": "continuaci\u00f3n",
+     "alineado_htf": true,
+     "zona": [
+      442.14990234375,
+      442.989990234375
+     ],
+     "entrada_ce": 442.57,
+     "stop": 443.95,
+     "riesgo_accion": 1.38,
+     "tp_4r": 437.05,
+     "tp_estructura": 435.05,
+     "rr_estructura": 5.45,
+     "confluencias": [
+      "underside 441.65"
+     ],
+     "n_conf": 0,
+     "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
+     "hora_vela_et": "12:40 PM",
+     "fecha": "2026-11-06"
+    }
+   ]
   }
  },
- "last": {},
- "as_of_et": "2026-11-06 12:35"
+ "last": {
+  "MU|SHORT|694.09-694.69": "INCOMPLETO",
+  "AMD|SHORT|442.15-442.99": "INCOMPLETO"
+ },
+ "as_of_et": "2026-11-06 12:39"
 }
