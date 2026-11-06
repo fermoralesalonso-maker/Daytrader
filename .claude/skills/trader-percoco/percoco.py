@@ -48,6 +48,11 @@ def fetch(sym, interval):
                     c = q["close"][i]
                     if c is None:
                         continue
+                    # Regular session only: Yahoo adds a zero-range 16:00 print
+                    # that would create fake FVGs at the closing price.
+                    hm = et(t).hour * 60 + et(t).minute
+                    if interval.endswith(("m", "h")) and not (570 <= hm < 960):
+                        continue
                     o, h, l = q["open"][i], q["high"][i], q["low"][i]
                     bars.append({"t": t, "o": o if o is not None else c, "h": h if h is not None else c,
                                  "l": l if l is not None else c, "c": c, "v": q["volume"][i] or 0})
