@@ -217,8 +217,8 @@
    ]
   },
   "MU": {
-   "as_of_et": "2026-11-06 13:44",
-   "price": 688.065,
+   "as_of_et": "2026-11-06 13:48",
+   "price": 688.855,
    "setups": [
     {
      "tf": "5m",
@@ -242,7 +242,7 @@
      ],
      "n_conf": 2,
      "estado": "EN ZONA, esperando vela de reacci\u00f3n",
-     "hora_vela_et": "1:45 PM",
+     "hora_vela_et": "1:50 PM",
      "fecha": "2026-11-06"
     },
     {
@@ -265,14 +265,14 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "1:45 PM",
+     "hora_vela_et": "1:50 PM",
      "fecha": "2026-11-06"
     }
    ]
   },
   "AMD": {
-   "as_of_et": "2026-11-06 13:44",
-   "price": 441.069,
+   "as_of_et": "2026-11-06 13:48",
+   "price": 441.44,
    "setups": []
   }
  },
@@ -280,7 +280,7 @@
   "MU|SHORT|686.81-691.04": "EN ZONA, esperando vela de reacci\u00f3n",
   "MU|SHORT|694.09-694.69": "INCOMPLETO"
  },
- "as_of_et": "2026-11-06 13:44",
+ "as_of_et": "2026-11-06 13:48",
  "blocked": {
   "AMD": "BLOQUEADO por /trader-news"
  }
