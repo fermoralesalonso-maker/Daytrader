@@ -9,10 +9,12 @@
       "stop": 123.73,
       "target": 145.31,
       "shares": 1,
-      "status": "abierta",
+      "status": "CERRADA manual",
       "last": 127.72,
       "pnl": -3.21,
-      "R": -0.45
+      "R": -0.45,
+      "exit": 127.72,
+      "exit_date": "2026-11-05"
     },
     {
       "symbol": "NEE",
@@ -20,10 +22,12 @@
       "stop": 85.24,
       "target": 99.37,
       "shares": 2,
-      "status": "abierta",
+      "status": "CERRADA manual",
       "last": 88.26,
-      "pnl": -3.37,
-      "R": -0.36
+      "pnl": -3.38,
+      "R": -0.36,
+      "exit": 88.26,
+      "exit_date": "2026-11-05"
     },
     {
       "symbol": "XYZ",
@@ -31,10 +35,12 @@
       "stop": 80.94,
       "target": 102.99,
       "shares": 2,
-      "status": "abierta",
+      "status": "CERRADA manual",
       "last": 84.07,
       "pnl": -8.44,
-      "R": -0.57
+      "R": -0.57,
+      "exit": 84.07,
+      "exit_date": "2026-11-05"
     },
     {
       "symbol": "WFC",
@@ -42,13 +48,16 @@
       "stop": 84.02,
       "target": 99.23,
       "shares": 2,
-      "status": "abierta",
+      "status": "CERRADA manual",
       "last": 84.78,
       "pnl": -8.62,
-      "R": -0.85
+      "R": -0.85,
+      "exit": 84.78,
+      "exit_date": "2026-11-05"
     }
   ],
   "sessions": 1,
-  "total_pnl": -23.64,
-  "updated": "2026-11-05 16:12"
+  "total_pnl": -23.65,
+  "updated": "2026-11-05 16:12",
+  "closed_note": "Cerradas a petición del usuario el 2026-11-06 (antes de la apertura) al cierre del 2026-11-05."
 }
