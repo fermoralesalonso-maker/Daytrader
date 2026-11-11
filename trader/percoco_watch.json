@@ -1,8 +1,8 @@
 {
  "symbols": {
   "SPY": {
-   "as_of_et": "2026-11-11 12:29",
-   "price": 760.675,
+   "as_of_et": "2026-11-11 12:33",
+   "price": 761.01,
    "setups": [
     {
      "tf": "5m",
@@ -25,8 +25,8 @@
       "Fib 0.618 756.60"
      ],
      "n_conf": 2,
-     "estado": "ENTRADA PASADA (+10.3R): no perseguir",
-     "hora_vela_et": "12:30 PM",
+     "estado": "ENTRADA PASADA (+11.5R): no perseguir",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -51,7 +51,7 @@
      ],
      "n_conf": 2,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -74,7 +74,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -97,7 +97,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -120,7 +120,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -143,7 +143,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     }
    ]
@@ -311,8 +311,8 @@
    ]
   },
   "QQQ": {
-   "as_of_et": "2026-11-11 12:29",
-   "price": 694.03,
+   "as_of_et": "2026-11-11 12:33",
+   "price": 694.53,
    "setups": [
     {
      "tf": "5m",
@@ -335,7 +335,7 @@
      ],
      "n_conf": 1,
      "estado": "esperando retroceso a la zona",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -358,7 +358,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -381,7 +381,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -404,7 +404,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -427,7 +427,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     },
     {
@@ -450,7 +450,7 @@
      ],
      "n_conf": 0,
      "estado": "INCOMPLETO: falta confluencia Fib/RSI (regla 11)",
-     "hora_vela_et": "12:30 PM",
+     "hora_vela_et": "12:35 PM",
      "fecha": "2026-11-11"
     }
    ]
@@ -470,5 +470,5 @@
   "QQQ|LONG|689.45-689.90": "INCOMPLETO",
   "QQQ|LONG|688.13-688.74": "INCOMPLETO"
  },
- "as_of_et": "2026-11-11 12:29"
+ "as_of_et": "2026-11-11 12:33"
 }
